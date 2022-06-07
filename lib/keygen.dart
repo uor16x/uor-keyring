@@ -23,7 +23,11 @@ class _KeyGenState extends State<Keygen> {
           children: const [
             TabHeader("Generate new key"),
             SizedBox(height: 15),
-            TextLabel("Result", "my-mail-1")
+            TextLabel(
+              "Result",
+              "my-mail-1",
+              readOnly: true,
+            )
           ],
         ),
       ),

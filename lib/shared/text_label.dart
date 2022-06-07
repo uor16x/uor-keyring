@@ -3,39 +3,30 @@ import 'package:flutter/material.dart';
 class TextLabel extends StatelessWidget {
   final String label;
   final String text;
-  final bool active;
+  final bool readOnly;
+  final String hint;
 
-  const TextLabel(
-    this.label,
-    this.text, {
-    super.key,
-    this.active = false,
-  });
+  const TextLabel(this.label, this.text,
+      {this.readOnly = false, this.hint = '', super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        const Text(
-          'Customer Contact',
+        Text(
+          label,
           textAlign: TextAlign.left,
         ),
-        const TextField(
+        TextField(
+          controller: TextEditingController()..text = text,
           cursorColor: Colors.white,
+          readOnly: readOnly,
           decoration: InputDecoration(
-            hintText: 'Enter here',
+            hintText: hint,
           ),
         )
       ],
     );
-    // return Center(
-    //   child: Text(
-    //     title,
-    //     style: const TextStyle(
-    //       fontSize: 28,
-    //     ),
-    //   ),
-    // );
   }
 }
