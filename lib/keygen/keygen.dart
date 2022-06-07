@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../shared/text_label.dart';
-import '../shared/tab_header.dart';
+import 'package:uor_keyring/keygen/gen_result.dart';
+import 'package:uor_keyring/shared/tab_header.dart';
 
 class Keygen extends StatefulWidget {
   const Keygen({super.key});
@@ -10,13 +10,24 @@ class Keygen extends StatefulWidget {
 }
 
 class _KeyGenState extends State<Keygen> {
-  String _result = 'my-email-1';
+  String _resultText = 'my-email-1';
+  String _resultKey = '';
 
-  void setResult(String newResult) {
+  void setResultText(String newResultText) {
     setState(() {
-      _result = newResult;
+      _resultText = newResultText;
     });
   }
+
+  void setResultKey(String newResultKey) {
+    setState(() {
+      _resultKey = newResultKey;
+    });
+  }
+
+  void copyResultText() {}
+
+  void copyResultKey() {}
 
   @override
   Widget build(BuildContext context) {
@@ -31,37 +42,11 @@ class _KeyGenState extends State<Keygen> {
           children: [
             const TabHeader("Generate new key"),
             const SizedBox(height: 15),
-            Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.white54,
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  TextLabel(
-                    hint: "result",
-                    initialText: _result,
-                    label: "Encoded result",
-                    readOnly: true,
-                    onChangedCallback: setResult,
-                  ),
-                  Center(
-                    child: ElevatedButton(
-                      // style: ElevatedButton.styleFrom(
-                      //   primary: Colors.black,
-                      // ),
-                      onPressed: () {},
-                      child: const Text(
-                        'Submit',
-                        style: TextStyle(fontSize: 24),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            GenResult(
+              resultText: _resultText,
+              resultKey: _resultKey,
+              copyText: copyResultText,
+              copyKey: copyResultKey,
             ),
             const SizedBox(height: 15),
           ],
