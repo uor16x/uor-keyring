@@ -1,28 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:uor_keyring/widget/keygen/actions/substr.dart';
 
 class ActionPicker extends StatefulWidget {
   const ActionPicker({super.key});
 
   @override
   State<ActionPicker> createState() => _ActionPickerState();
-}
-
-class W1 extends StatelessWidget {
-  const W1({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text('W1');
-  }
-}
-
-class W2 extends StatelessWidget {
-  const W2({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text('W2');
-  }
 }
 
 class _ActionPickerState extends State<ActionPicker> {
@@ -80,8 +63,7 @@ class _ActionPickerState extends State<ActionPicker> {
         children: [
           labelText,
           dropdown,
-          if (_value == 'One') const W1(),
-          if (_value == 'Two') const W2(),
+          if (_value == 'Two') const Substr(),
         ],
       ),
     );
