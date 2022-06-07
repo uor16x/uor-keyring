@@ -10,7 +10,9 @@ class TabHeader extends StatelessWidget {
     return Center(
       child: Text(
         title,
-        style: TextStyle(),
+        style: const TextStyle(
+          fontSize: 28,
+        ),
       ),
     );
   }

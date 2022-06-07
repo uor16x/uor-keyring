@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'shared/text_label.dart';
 import 'shared/tab_header.dart';
 
 class Keygen extends StatefulWidget {
@@ -22,6 +22,8 @@ class _KeyGenState extends State<Keygen> {
         body: Column(
           children: const [
             TabHeader("Generate new key"),
+            SizedBox(height: 15),
+            TextLabel("Result", "my-mail-1")
           ],
         ),
       ),
