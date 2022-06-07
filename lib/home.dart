@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './keygen.dart';
+import 'keygen/keygen.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -29,9 +29,6 @@ class Home extends StatelessWidget {
               child: Text("Decode password"),
             ),
             Keygen(),
-            // Center(
-            //   child: Text("Generate new password"),
-            // ),
           ],
         ),
       ),

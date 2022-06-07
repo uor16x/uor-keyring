@@ -2,12 +2,19 @@ import 'package:flutter/material.dart';
 
 class TextLabel extends StatelessWidget {
   final String label;
-  final String text;
-  final bool readOnly;
   final String hint;
+  final String initialText;
+  final bool readOnly;
+  final Function onChangedCallback;
 
-  const TextLabel(this.label, this.text,
-      {this.readOnly = false, this.hint = '', super.key});
+  const TextLabel({
+    required this.label,
+    required this.hint,
+    required this.initialText,
+    required this.onChangedCallback,
+    this.readOnly = false,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +23,21 @@ class TextLabel extends StatelessWidget {
       children: <Widget>[
         Text(
           label,
+          style: const TextStyle(
+            fontSize: 18,
+          ),
           textAlign: TextAlign.left,
         ),
         TextField(
-          controller: TextEditingController()..text = text,
+          controller: TextEditingController()..text = initialText,
           cursorColor: Colors.white,
           readOnly: readOnly,
           decoration: InputDecoration(
             hintText: hint,
           ),
+          onChanged: (value) {
+            onChangedCallback(value);
+          },
         )
       ],
     );
