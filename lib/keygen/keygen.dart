@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uor_keyring/keygen/action_picker.dart';
 import 'package:uor_keyring/keygen/gen_result.dart';
 import 'package:uor_keyring/shared/tab_header.dart';
 
@@ -49,6 +50,7 @@ class _KeyGenState extends State<Keygen> {
               copyKey: copyResultKey,
             ),
             const SizedBox(height: 15),
+            const ActionPicker()
           ],
         ),
       ),
