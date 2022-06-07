@@ -10,6 +10,7 @@ class Home extends StatelessWidget {
       length: 2,
       initialIndex: 0,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: const Text('Uor Keyring'),
           bottom: const TabBar(

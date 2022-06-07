@@ -39,23 +39,23 @@ class _KeyGenState extends State<Keygen> {
         left: 10,
         right: 10,
       ),
-      child: Scaffold(
-        body: Column(
-          children: [
-            const TabHeader("Generate new key"),
-            const SizedBox(height: 15),
-            GenResult(
-              resultText: _resultText,
-              resultKey: _resultKey,
-              copyText: copyResultText,
-              copyKey: copyResultKey,
-            ),
-            const SizedBox(height: 15),
-            ActionPicker(
+      child: Column(
+        children: [
+          const TabHeader("Generate new key"),
+          const SizedBox(height: 15),
+          GenResult(
+            resultText: _resultText,
+            resultKey: _resultKey,
+            copyText: copyResultText,
+            copyKey: copyResultKey,
+          ),
+          const SizedBox(height: 15),
+          Expanded(
+            child: ActionPicker(
               success: setResultText,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

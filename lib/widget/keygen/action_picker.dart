@@ -56,15 +56,99 @@ class _ActionPickerState extends State<ActionPicker> {
           color: Colors.white54,
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
+      child: ListView(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(8),
+        children: <Widget>[
           labelText,
           dropdown,
           const SizedBox(height: 10),
           if (_value == 'Two') Substr(onTransform: widget.success),
+          if (_value == 'Two') Substr(onTransform: widget.success),
+          if (_value == 'Two') Substr(onTransform: widget.success),
+          if (_value == 'Two') Substr(onTransform: widget.success),
+          if (_value == 'Two') Substr(onTransform: widget.success),
+          if (_value == 'Two') Substr(onTransform: widget.success),
+          if (_value == 'Two') Substr(onTransform: widget.success),
+          // Container(
+          //   height: 50,
+          //   color: Colors.amber[600],
+          //   child: const Center(child: Text('Entry A')),
+          // ),
+          // Container(
+          //   height: 50,
+          //   color: Colors.amber[500],
+          //   child: const Center(child: Text('Entry B')),
+          // ),
+          // Container(
+          //   height: 50,
+          //   color: Colors.amber[100],
+          //   child: const Center(child: Text('Entry C')),
+          // ),
+          // Container(
+          //   height: 50,
+          //   color: Colors.amber[100],
+          //   child: const Center(child: Text('Entry C')),
+          // ),
+          // Container(
+          //   height: 50,
+          //   color: Colors.amber[100],
+          //   child: const Center(child: Text('Entry C')),
+          // ),
+          // Container(
+          //   height: 50,
+          //   color: Colors.amber[100],
+          //   child: const Center(child: Text('Entry C')),
+          // ),
+          // Container(
+          //   height: 50,
+          //   color: Colors.amber[100],
+          //   child: const Center(child: Text('Entry C')),
+          // ),
+          // Container(
+          //   height: 50,
+          //   color: Colors.amber[100],
+          //   child: const Center(child: Text('Entry C')),
+          // ),
+          // Container(
+          //   height: 50,
+          //   color: Colors.amber[100],
+          //   child: const Center(child: Text('Entry C')),
+          // ),
+          // Container(
+          //   height: 50,
+          //   color: Colors.amber[100],
+          //   child: const Center(child: Text('Entry C')),
+          // ),
+          // Container(
+          //   height: 50,
+          //   color: Colors.amber[100],
+          //   child: const Center(child: Text('Entry C')),
+          // ),
         ],
       ),
+      // child: SingleChildScrollView(
+      //   child: Column(
+      //     crossAxisAlignment: CrossAxisAlignment.stretch,
+      //     children: [
+      //       labelText,
+      //       dropdown,
+      //       const SizedBox(height: 10),
+      //       if (_value == 'Two') Substr(onTransform: widget.success),
+      //       if (_value == 'Two') Substr(onTransform: widget.success),
+      //       if (_value == 'Two') Substr(onTransform: widget.success),
+      //       if (_value == 'Two') Substr(onTransform: widget.success),
+      //       if (_value == 'Two') Substr(onTransform: widget.success),
+      //       if (_value == 'Two') Substr(onTransform: widget.success),
+      //       if (_value == 'Two') Substr(onTransform: widget.success),
+      //       if (_value == 'Two') Substr(onTransform: widget.success),
+      //       if (_value == 'Two') Substr(onTransform: widget.success),
+      //       if (_value == 'Two') Substr(onTransform: widget.success),
+      //       if (_value == 'Two') Substr(onTransform: widget.success),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }
