@@ -31,6 +31,33 @@ class _KeyGenState extends State<Keygen> {
 
   void copyResultKey() {}
 
+  void showHistory(BuildContext context) {
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: const EdgeInsets.all(15),
+          child: ListView(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            padding: const EdgeInsets.all(8),
+            children: const <Widget>[
+              Text("Hello1"),
+              Text("Hello1"),
+              Text("Hello1"),
+              Text("Hello1"),
+              Text("Hello1"),
+              Text("Hello1"),
+              Text("Hello1"),
+              Text("Hello1"),
+              Text("Hello1"),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
