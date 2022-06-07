@@ -23,11 +23,13 @@ class _ResultItem extends StatelessWidget {
           style: const TextStyle(fontSize: 16),
           textAlign: TextAlign.left,
         ),
+        const SizedBox(height: 5),
         Text(
           text,
           style: const TextStyle(fontSize: 21),
           textAlign: TextAlign.left,
         ),
+        const SizedBox(height: 5),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
             primary: Colors.white30,
@@ -70,29 +72,18 @@ class GenResult extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Text(
-            'Encoded result',
-            style: TextStyle(
-              fontSize: 16,
-            ),
-            textAlign: TextAlign.left,
+          _ResultItem(
+            label: 'Encoded result',
+            text: resultText,
+            button: 'Copy',
+            onPress: copyText,
           ),
-          const Text(
-            'Encoded result',
-            style: TextStyle(
-              fontSize: 21,
-            ),
-            textAlign: TextAlign.left,
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: Colors.white30,
-            ),
-            onPressed: () {},
-            child: const Text(
-              'Copy',
-              style: TextStyle(fontSize: 24),
-            ),
+          const Divider(color: Colors.white),
+          _ResultItem(
+            label: 'Encoding key',
+            text: resultKey.isNotEmpty ? resultKey : '-',
+            button: 'Copy',
+            onPress: copyKey,
           ),
         ],
       ),
