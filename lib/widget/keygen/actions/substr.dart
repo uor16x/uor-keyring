@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/service/transform/substr.dart';
+import 'package:uor_keyring/shared/toast.dart';
 
 class Substr extends StatelessWidget {
-  const Substr({super.key});
+  final Function onTransform;
+
+  const Substr({required this.onTransform, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,11 +14,15 @@ class Substr extends StatelessWidget {
         primary: Colors.white30,
       ),
       onPressed: () {
-        String a = substr('zxczxc', 0, 1);
-        print(a);
+        try {
+          String r = substr('abcde', 1, 5);
+          onTransform(r);
+        } catch (err) {
+          errToast('Failed to execute action: $err');
+        }
       },
       child: const Text(
-        'PRESS',
+        'Cut',
         style: TextStyle(fontSize: 24),
       ),
     );

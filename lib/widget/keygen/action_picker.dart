@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:uor_keyring/widget/keygen/actions/substr.dart';
 
 class ActionPicker extends StatefulWidget {
-  const ActionPicker({super.key});
+  final Function success;
+
+  const ActionPicker({required this.success, super.key});
 
   @override
   State<ActionPicker> createState() => _ActionPickerState();
@@ -48,11 +50,7 @@ class _ActionPickerState extends State<ActionPicker> {
     );
 
     return Container(
-      padding: const EdgeInsets.only(
-        top: 10,
-        left: 10,
-        right: 10,
-      ),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.white54,
@@ -63,7 +61,8 @@ class _ActionPickerState extends State<ActionPicker> {
         children: [
           labelText,
           dropdown,
-          if (_value == 'Two') const Substr(),
+          const SizedBox(height: 10),
+          if (_value == 'Two') Substr(onTransform: widget.success),
         ],
       ),
     );

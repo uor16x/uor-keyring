@@ -15,6 +15,7 @@ class _KeyGenState extends State<Keygen> {
   String _resultKey = '';
 
   void setResultText(String newResultText) {
+    print('SET RESULT TEXT $newResultText');
     setState(() {
       _resultText = newResultText;
     });
@@ -50,7 +51,9 @@ class _KeyGenState extends State<Keygen> {
               copyKey: copyResultKey,
             ),
             const SizedBox(height: 15),
-            const ActionPicker()
+            ActionPicker(
+              success: setResultText,
+            ),
           ],
         ),
       ),
