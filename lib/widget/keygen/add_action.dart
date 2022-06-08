@@ -11,12 +11,47 @@ class AddAction extends StatefulWidget {
 }
 
 class _AddActionState extends State<AddAction> {
-  String value = TransformAction.none as String;
+  bool addMode = false;
+  String value = TransformAction.none.asString();
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('this is add action widget'),
-    );
+    var z = addMode
+        ? Center(
+            child: Column(
+              children: [
+                const Text('FIELD 1'),
+                const Text('FIELD 2'),
+                TextButton(
+                    onPressed: () {
+                      setState(() {
+                        addMode = false;
+                      });
+                      widget.apply();
+                    },
+                    child: const Text('TRANSFORM')),
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      addMode = false;
+                    });
+                  },
+                  child: const Text('CANCEL'),
+                ),
+              ],
+            ),
+          )
+        : Center(
+            child: TextButton(
+              onPressed: () {
+                setState(() {
+                  addMode = true;
+                });
+              },
+              child: const Text('ADD ACTION'),
+            ),
+          );
+
+    return z;
   }
 }
