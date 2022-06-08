@@ -38,11 +38,11 @@ class _KeyGenState extends State<Keygen> {
       context: context,
       builder: (BuildContext context) {
         return Container(
-          padding: const EdgeInsets.all(15),
+          padding: Styles.padding(15),
           child: ListView(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
-            padding: const EdgeInsets.all(8),
+            padding: Styles.padding(8),
             children: const <Widget>[
               Text("Hello1"),
               Text("Hello1"),

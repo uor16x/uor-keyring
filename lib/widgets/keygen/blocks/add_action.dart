@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/widgets/keygen/actions/substr.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
+import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class AddAction extends StatefulWidget {
   final String currentValue;
@@ -73,6 +74,7 @@ class _AddActionState extends State<AddAction> {
       addAction = Column(
         children: [
           actionPicker,
+          Styles.emptySpace(10),
 
           // specific transformations block
           if (actionType == TransformAction.substr.asString())
@@ -80,6 +82,7 @@ class _AddActionState extends State<AddAction> {
                 currentValue: widget.currentValue, onTransform: widget.apply),
           // ---
 
+          Styles.emptySpace(10),
           TextButton(
             onPressed: () => setMode(false),
             child: const Text('Cancel'),

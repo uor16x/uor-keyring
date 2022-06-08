@@ -61,7 +61,7 @@ class ResultBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: Styles.padding(),
       decoration: Styles.boxDecoration,
       child: _ResultText(
         label: 'Encoded result example',

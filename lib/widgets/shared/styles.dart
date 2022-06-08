@@ -9,4 +9,6 @@ class Styles {
   );
 
   static SizedBox emptySpace([double height = 5]) => SizedBox(height: height);
+
+  static EdgeInsets padding([double all = 10]) => EdgeInsets.all(all);
 }

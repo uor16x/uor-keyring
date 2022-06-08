@@ -14,7 +14,7 @@ class _LogItem extends StatelessWidget {
       margin: const EdgeInsets.only(
         bottom: 10,
       ),
-      padding: const EdgeInsets.all(5),
+      padding: Styles.padding(5),
       decoration: Styles.boxDecoration,
       child: Center(
         child: Text(
@@ -43,7 +43,7 @@ class LogBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: Styles.padding(),
       decoration: Styles.boxDecoration,
       child: ListView(
         scrollDirection: Axis.vertical,

@@ -53,12 +53,12 @@ class _ActionPickerState extends State<ActionPicker> {
     );
 
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: Styles.padding(),
       decoration: Styles.boxDecoration,
       child: ListView(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        padding: const EdgeInsets.all(8),
+        padding: Styles.padding(8),
         children: <Widget>[
           labelText,
           dropdown,
