@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/widgets/keygen/action_picker.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/add_action.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/log_block.dart';
@@ -13,19 +14,19 @@ class Keygen extends StatefulWidget {
 }
 
 class _KeyGenState extends State<Keygen> {
-  String _resultText = 'my-email-1';
-  String _resultKey = '';
+  String resultText = 'my-email-1';
+  List<ActionLogItem> log = [];
 
   void setResultText(String newResultText) {
     print('SET RESULT TEXT $newResultText');
     setState(() {
-      _resultText = newResultText;
+      resultText = newResultText;
     });
   }
 
-  void setResultKey(String newResultKey) {
+  void addAction(ActionLogItem item) {
     setState(() {
-      _resultKey = newResultKey;
+      log.add(item);
     });
   }
 
@@ -73,16 +74,14 @@ class _KeyGenState extends State<Keygen> {
           const TabHeader("Generate new key"),
           const SizedBox(height: 15),
           ResultBlock(
-            result: _resultText,
+            result: resultText,
             copy: copyResultText,
           ),
           const SizedBox(height: 15),
           Expanded(
             child: LogBlock(
-              logItems: const [],
-              newActionApplied: () {
-                print('applied');
-              },
+              logItems: log,
+              newActionApplied: addAction,
             ),
           ),
         ],

@@ -12,13 +12,13 @@ class _LogItem extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.white54,
-          ),
-          shape: BoxShape.circle),
+        border: Border.all(
+          color: Colors.white54,
+        ),
+      ),
       child: Center(
         child: Text(
-          '${item.type} [${item.args}]',
+          '${item.type} ${item.args}',
           style: const TextStyle(
             fontSize: 20,
           ),

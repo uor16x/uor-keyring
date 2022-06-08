@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uor_keyring/widgets/keygen/actions/list.dart';
+import 'package:uor_keyring/shared/action_result.dart';
+import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 
 class AddAction extends StatefulWidget {
   final Function apply;
@@ -10,24 +11,69 @@ class AddAction extends StatefulWidget {
   State<AddAction> createState() => _AddActionState();
 }
 
-class _AddActionState extends State<AddAction> {
-  bool addMode = false;
-  String value = TransformAction.none.asString();
+class _ActionPicker extends StatelessWidget {
+  final String selectedType;
+  final Function onPick;
+
+  const _ActionPicker({required this.selectedType, required this.onPick});
 
   @override
   Widget build(BuildContext context) {
+    List<DropdownMenuItem<String>> items = TransformAction.values.map(
+      (item) {
+        return DropdownMenuItem<String>(
+          value: item.asString(),
+          child: Text(item.asString()),
+        );
+      },
+    ).toList();
+
+    return DropdownButton<String>(
+      isExpanded: true,
+      value: selectedType,
+      icon: const Icon(Icons.arrow_downward),
+      elevation: 16,
+      style: const TextStyle(color: Colors.white),
+      underline: Container(
+        height: 2,
+        color: Colors.white30,
+      ),
+      onChanged: ((value) => {onPick(value)}),
+      items: items,
+    );
+  }
+}
+
+class _AddActionState extends State<AddAction> {
+  bool addMode = false;
+  String actionType = TransformAction.none.asString();
+
+  setActionType(String type) {
+    setState(() {
+      actionType = type;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Widget actionPicker = _ActionPicker(
+      selectedType: actionType,
+      onPick: setActionType,
+    );
+
     var z = addMode
         ? Center(
             child: Column(
               children: [
-                const Text('FIELD 1'),
-                const Text('FIELD 2'),
+                actionPicker,
                 TextButton(
                     onPressed: () {
+                      widget.apply(
+                        ActionLogItem('Substr', [1, 2, 3], 'zxc', 'qwe'),
+                      );
                       setState(() {
                         addMode = false;
                       });
-                      widget.apply();
                     },
                     child: const Text('TRANSFORM')),
                 TextButton(
