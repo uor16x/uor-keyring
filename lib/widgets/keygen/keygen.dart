@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/shared/action_result.dart';
-import 'package:uor_keyring/widgets/keygen/action_picker.dart';
-import 'package:uor_keyring/widgets/keygen/blocks/add_action.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/log_block.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/result_block.dart';
 import 'package:uor_keyring/widgets/shared/tab_header.dart';

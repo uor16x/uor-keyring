@@ -20,12 +20,14 @@ class Substr extends StatelessWidget {
       onPressed: () {
         try {
           String result = substr(currentValue, 1, 5);
-          onTransform(ActionLogItem(
-            TransformAction.substr.asString(),
-            [1, 5],
-            currentValue,
-            result,
-          ));
+          onTransform(
+            ActionLogItem(
+              TransformAction.substr.asString(),
+              [1, 5],
+              currentValue,
+              result,
+            ),
+          );
         } catch (err) {
           errToast('Failed to execute action: $err');
         }

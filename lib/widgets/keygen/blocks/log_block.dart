@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/add_action.dart';
+import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class _LogItem extends StatelessWidget {
   final ActionLogItem item;
@@ -10,12 +11,11 @@ class _LogItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.white54,
-        ),
+      margin: const EdgeInsets.only(
+        bottom: 10,
       ),
+      padding: const EdgeInsets.all(5),
+      decoration: Styles.boxDecoration,
       child: Center(
         child: Text(
           '${item.type} ${item.args}',
@@ -45,6 +45,7 @@ class LogBlock extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
         border: Border.all(
           color: Colors.white54,
         ),
