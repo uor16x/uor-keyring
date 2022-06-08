@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uor_keyring/widget/keygen/keygen.dart';
+import 'package:uor_keyring/widgets/keygen/keygen.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:uor_keyring/widget/keygen/action_picker.dart';
-import 'package:uor_keyring/widget/keygen/block/add_action.dart';
-import 'package:uor_keyring/widget/keygen/block/result_block.dart';
-import 'package:uor_keyring/widget/shared/tab_header.dart';
+import 'package:uor_keyring/widgets/keygen/action_picker.dart';
+import 'package:uor_keyring/widgets/keygen/blocks/add_action.dart';
+import 'package:uor_keyring/widgets/keygen/blocks/result_block.dart';
+import 'package:uor_keyring/widgets/shared/tab_header.dart';
 
 class Keygen extends StatefulWidget {
   const Keygen({super.key});
