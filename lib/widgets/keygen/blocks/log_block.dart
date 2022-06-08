@@ -44,12 +44,7 @@ class LogBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: Colors.white54,
-        ),
-      ),
+      decoration: Styles.boxDecoration,
       child: ListView(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,

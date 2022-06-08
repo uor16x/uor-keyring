@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class _ResultText extends StatelessWidget {
   final String label;
@@ -61,11 +62,7 @@ class ResultBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.white54,
-        ),
-      ),
+      decoration: Styles.boxDecoration,
       child: _ResultText(
         label: 'Encoded result example',
         text: result,

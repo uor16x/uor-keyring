@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/widgets/keygen/actions/substr.dart';
+import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class ActionPicker extends StatefulWidget {
   final String currentValue;
@@ -53,11 +54,7 @@ class _ActionPickerState extends State<ActionPicker> {
 
     return Container(
       padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.white54,
-        ),
-      ),
+      decoration: Styles.boxDecoration,
       child: ListView(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
