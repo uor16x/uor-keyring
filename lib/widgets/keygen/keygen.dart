@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/widgets/keygen/action_picker.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/add_action.dart';
+import 'package:uor_keyring/widgets/keygen/blocks/log_block.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/result_block.dart';
 import 'package:uor_keyring/widgets/shared/tab_header.dart';
 
@@ -77,25 +78,11 @@ class _KeyGenState extends State<Keygen> {
           ),
           const SizedBox(height: 15),
           Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.white54,
-                ),
-              ),
-              child: ListView(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(8),
-                children: <Widget>[
-                  AddAction(
-                    apply: () {
-                      print('applied');
-                    },
-                  ),
-                ],
-              ),
+            child: LogBlock(
+              logItems: const [],
+              newActionApplied: () {
+                print('applied');
+              },
             ),
           ),
         ],

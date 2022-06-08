@@ -5,6 +5,6 @@ enum TransformAction {
 
 extension ParseToString on TransformAction {
   String asString() {
-    return this.toString().split('.').last;
+    return toString().split('.').last;
   }
 }
