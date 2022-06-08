@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class _ResultItem extends StatelessWidget {
+class _ResultText extends StatelessWidget {
   final String label;
   final String text;
   final String button;
   final Function onPress;
 
-  const _ResultItem({
+  const _ResultText({
     required this.label,
     required this.text,
     required this.button,
@@ -47,11 +47,11 @@ class _ResultItem extends StatelessWidget {
   }
 }
 
-class GenResult extends StatelessWidget {
+class ResultBlock extends StatelessWidget {
   final String result;
   final Function copy;
 
-  const GenResult({
+  const ResultBlock({
     super.key,
     required this.result,
     required this.copy,
@@ -66,16 +66,11 @@ class GenResult extends StatelessWidget {
           color: Colors.white54,
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          _ResultItem(
-            label: 'Encoded result example',
-            text: result,
-            button: 'Copy',
-            onPress: copy,
-          ),
-        ],
+      child: _ResultText(
+        label: 'Encoded result example',
+        text: result,
+        button: 'Copy key',
+        onPress: copy,
       ),
     );
   }

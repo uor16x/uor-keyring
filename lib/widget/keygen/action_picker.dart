@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uor_keyring/widget/keygen/actions/substr.dart';
+import 'package:uor_keyring/widget/keygen/action/substr.dart';
 
 class ActionPicker extends StatefulWidget {
   final String currentValue;

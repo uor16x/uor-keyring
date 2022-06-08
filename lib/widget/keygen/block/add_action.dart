@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uor_keyring/widget/keygen/actions/list.dart';
+import 'package:uor_keyring/widget/keygen/action/list.dart';
 
 class AddAction extends StatefulWidget {
   final Function apply;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/widget/keygen/action_picker.dart';
-import 'package:uor_keyring/widget/keygen/add_action.dart';
-import 'package:uor_keyring/widget/keygen/gen_result.dart';
+import 'package:uor_keyring/widget/keygen/block/add_action.dart';
+import 'package:uor_keyring/widget/keygen/block/result_block.dart';
 import 'package:uor_keyring/widget/shared/tab_header.dart';
 
 class Keygen extends StatefulWidget {
@@ -71,7 +71,7 @@ class _KeyGenState extends State<Keygen> {
         children: [
           const TabHeader("Generate new key"),
           const SizedBox(height: 15),
-          GenResult(
+          ResultBlock(
             result: _resultText,
             copy: copyResultText,
           ),
@@ -93,84 +93,6 @@ class _KeyGenState extends State<Keygen> {
                     apply: () {
                       print('applied');
                     },
-                  ),
-                  Center(
-                    child: Text('item 1'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
-                  ),
-                  Center(
-                    child: Text('item 2'),
                   ),
                 ],
               ),
