@@ -24,13 +24,13 @@ class _ResultText extends StatelessWidget {
           style: const TextStyle(fontSize: 16),
           textAlign: TextAlign.left,
         ),
-        const SizedBox(height: 5),
+        Styles.emptySpace(),
         Text(
           text,
           style: const TextStyle(fontSize: 21),
           textAlign: TextAlign.left,
         ),
-        const SizedBox(height: 5),
+        Styles.emptySpace(),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
             primary: Colors.white30,

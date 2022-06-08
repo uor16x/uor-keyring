@@ -62,7 +62,7 @@ class _ActionPickerState extends State<ActionPicker> {
         children: <Widget>[
           labelText,
           dropdown,
-          const SizedBox(height: 10),
+          Styles.emptySpace(10),
         ],
       ),
     );

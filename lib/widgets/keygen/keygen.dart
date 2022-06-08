@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/log_block.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/result_block.dart';
+import 'package:uor_keyring/widgets/shared/styles.dart';
 import 'package:uor_keyring/widgets/shared/tab_header.dart';
 
 class Keygen extends StatefulWidget {
@@ -70,12 +71,12 @@ class _KeyGenState extends State<Keygen> {
       child: Column(
         children: [
           const TabHeader("Generate new key"),
-          const SizedBox(height: 15),
+          Styles.emptySpace(15),
           ResultBlock(
             result: resultText,
             copy: copyResultText,
           ),
-          const SizedBox(height: 15),
+          Styles.emptySpace(15),
           Expanded(
             child: LogBlock(
               currentValue: resultText,
