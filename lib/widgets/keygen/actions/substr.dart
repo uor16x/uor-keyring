@@ -16,6 +16,7 @@ class Substr extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: Styles.boxDecoration,
+      padding: Styles.padding(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
