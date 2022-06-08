@@ -3,9 +3,11 @@ import 'package:uor_keyring/service/transform/substr.dart';
 import 'package:uor_keyring/shared/toast.dart';
 
 class Substr extends StatelessWidget {
+  final String currentValue;
   final Function onTransform;
 
-  const Substr({required this.onTransform, super.key});
+  const Substr(
+      {required this.currentValue, required this.onTransform, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +17,8 @@ class Substr extends StatelessWidget {
       ),
       onPressed: () {
         try {
-          String r = substr('abcde', 1, 5);
-          onTransform(r);
+          String result = substr(currentValue, 1, 5);
+          onTransform(result);
         } catch (err) {
           errToast('Failed to execute action: $err');
         }

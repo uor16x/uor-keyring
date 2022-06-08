@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:uor_keyring/widget/keygen/actions/substr.dart';
 
 class ActionPicker extends StatefulWidget {
+  final String currentValue;
   final Function success;
 
-  const ActionPicker({required this.success, super.key});
+  const ActionPicker(
+      {required this.currentValue, required this.success, super.key});
 
   @override
   State<ActionPicker> createState() => _ActionPickerState();
@@ -64,7 +66,11 @@ class _ActionPickerState extends State<ActionPicker> {
           labelText,
           dropdown,
           const SizedBox(height: 10),
-          if (_value == 'Two') Substr(onTransform: widget.success),
+          if (_value == 'Two')
+            Substr(
+              onTransform: widget.success,
+              currentValue: '',
+            ),
         ],
       ),
     );

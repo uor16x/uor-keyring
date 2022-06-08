@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   fluttertoast: ^8.0.9
+  confirm_dialog: ^1.0.1
 
 
   # The following adds the Cupertino Icons font to your application.

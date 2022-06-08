@@ -71,14 +71,13 @@ class _KeyGenState extends State<Keygen> {
           const TabHeader("Generate new key"),
           const SizedBox(height: 15),
           GenResult(
-            resultText: _resultText,
-            resultKey: _resultKey,
-            copyText: copyResultText,
-            copyKey: copyResultKey,
+            result: _resultText,
+            copy: copyResultText,
           ),
           const SizedBox(height: 15),
           Expanded(
             child: ActionPicker(
+              currentValue: _resultText,
               success: setResultText,
             ),
           ),

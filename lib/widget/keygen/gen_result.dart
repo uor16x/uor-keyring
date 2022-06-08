@@ -48,17 +48,14 @@ class _ResultItem extends StatelessWidget {
 }
 
 class GenResult extends StatelessWidget {
-  final String resultText;
-  final String resultKey;
-  final Function copyText;
-  final Function copyKey;
+  final String result;
+  final Function copy;
 
-  const GenResult(
-      {super.key,
-      required this.resultText,
-      required this.resultKey,
-      required this.copyText,
-      required this.copyKey});
+  const GenResult({
+    super.key,
+    required this.result,
+    required this.copy,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -73,17 +70,10 @@ class GenResult extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _ResultItem(
-            label: 'Encoded result',
-            text: resultText,
+            label: 'Encoded result example',
+            text: result,
             button: 'Copy',
-            onPress: copyText,
-          ),
-          const Divider(color: Colors.white),
-          _ResultItem(
-            label: 'Encoding key',
-            text: resultKey.isNotEmpty ? resultKey : '-',
-            button: 'Copy',
-            onPress: copyKey,
+            onPress: copy,
           ),
         ],
       ),
