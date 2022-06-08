@@ -66,11 +66,6 @@ class _ActionPickerState extends State<ActionPicker> {
           labelText,
           dropdown,
           const SizedBox(height: 10),
-          if (_value == 'Two')
-            Substr(
-              onTransform: widget.success,
-              currentValue: '',
-            ),
         ],
       ),
     );

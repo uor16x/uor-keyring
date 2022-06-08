@@ -29,11 +29,16 @@ class _LogItem extends StatelessWidget {
 }
 
 class LogBlock extends StatelessWidget {
+  final String currentValue;
   final List<ActionLogItem> logItems;
-  final Function newActionApplied;
+  final void Function(ActionLogItem item) newActionApplied;
 
-  const LogBlock(
-      {super.key, required this.logItems, required this.newActionApplied});
+  const LogBlock({
+    super.key,
+    required this.currentValue,
+    required this.logItems,
+    required this.newActionApplied,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +55,7 @@ class LogBlock extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         children: <Widget>[
           ...logItems.map((item) => _LogItem(item: item)),
-          AddAction(apply: newActionApplied),
+          AddAction(currentValue: currentValue, apply: newActionApplied),
         ],
       ),
     );

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/shared/action_result.dart';
+import 'package:uor_keyring/widgets/keygen/actions/substr.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 
 class AddAction extends StatefulWidget {
-  final Function apply;
+  final String currentValue;
+  final void Function(ActionLogItem item) apply;
 
-  const AddAction({super.key, required this.apply});
+  const AddAction({super.key, required this.currentValue, required this.apply});
 
   @override
   State<AddAction> createState() => _AddActionState();
@@ -48,6 +50,12 @@ class _AddActionState extends State<AddAction> {
   bool addMode = false;
   String actionType = TransformAction.none.asString();
 
+  setMode(bool newMode) {
+    setState(() {
+      addMode = newMode;
+    });
+  }
+
   setActionType(String type) {
     setState(() {
       actionType = type;
@@ -56,48 +64,35 @@ class _AddActionState extends State<AddAction> {
 
   @override
   Widget build(BuildContext context) {
-    Widget actionPicker = _ActionPicker(
-      selectedType: actionType,
-      onPick: setActionType,
-    );
+    Widget addAction;
+    if (addMode) {
+      Widget actionPicker = _ActionPicker(
+        selectedType: actionType,
+        onPick: setActionType,
+      );
+      addAction = Column(
+        children: [
+          actionPicker,
 
-    var z = addMode
-        ? Center(
-            child: Column(
-              children: [
-                actionPicker,
-                TextButton(
-                    onPressed: () {
-                      widget.apply(
-                        ActionLogItem('Substr', [1, 2, 3], 'zxc', 'qwe'),
-                      );
-                      setState(() {
-                        addMode = false;
-                      });
-                    },
-                    child: const Text('TRANSFORM')),
-                TextButton(
-                  onPressed: () {
-                    setState(() {
-                      addMode = false;
-                    });
-                  },
-                  child: const Text('CANCEL'),
-                ),
-              ],
-            ),
-          )
-        : Center(
-            child: TextButton(
-              onPressed: () {
-                setState(() {
-                  addMode = true;
-                });
-              },
-              child: const Text('ADD ACTION'),
-            ),
-          );
+          // specific transformations block
+          if (actionType == TransformAction.substr.asString())
+            Substr(
+                currentValue: widget.currentValue, onTransform: widget.apply),
+          // ---
 
-    return z;
+          TextButton(
+            onPressed: () => setMode(false),
+            child: const Text('Cancel'),
+          ),
+        ],
+      );
+    } else {
+      addAction = TextButton(
+        onPressed: () => setMode(true),
+        child: const Text('Add transformation'),
+      );
+    }
+
+    return Center(child: addAction);
   }
 }

@@ -80,6 +80,7 @@ class _KeyGenState extends State<Keygen> {
           const SizedBox(height: 15),
           Expanded(
             child: LogBlock(
+              currentValue: resultText,
               logItems: log,
               newActionApplied: addAction,
             ),
