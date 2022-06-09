@@ -43,15 +43,16 @@ class LogBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: Styles.padding(),
+      // padding: Styles.padding(),
       decoration: Styles.boxDecoration,
       child: ListView(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(10),
         children: <Widget>[
-          ...logItems.map((item) => _LogItem(item: item)),
           AddAction(currentValue: currentValue, apply: newActionApplied),
+          Styles.emptySpace(10),
+          ...logItems.map((item) => _LogItem(item: item)),
         ],
       ),
     );

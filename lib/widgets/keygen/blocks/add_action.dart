@@ -63,6 +63,18 @@ class _AddActionState extends State<AddAction> {
     });
   }
 
+  reset() {
+    setState(() {
+      addMode = false;
+      actionType = TransformAction.none.asString();
+    });
+  }
+
+  onTransform(ActionLogItem item) {
+    reset();
+    widget.apply(item);
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget addAction;
@@ -78,8 +90,7 @@ class _AddActionState extends State<AddAction> {
 
           // specific transformations block
           if (actionType == TransformAction.substr.asString())
-            Substr(
-                currentValue: widget.currentValue, onTransform: widget.apply),
+            Substr(currentValue: widget.currentValue, onTransform: onTransform),
           // ---
 
           Styles.emptySpace(10),
@@ -87,6 +98,9 @@ class _AddActionState extends State<AddAction> {
             onPressed: () => setMode(false),
             child: const Text('Cancel'),
           ),
+          // const Divider(
+          //   color: Colors.white,
+          // ),
         ],
       );
     } else {

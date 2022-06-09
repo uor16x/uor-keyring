@@ -25,7 +25,10 @@ class _KeyGenState extends State<Keygen> {
 
   void addAction(ActionLogItem item) {
     setState(() {
-      log.add(item);
+      log = [
+        item,
+        ...log,
+      ];
     });
   }
 
