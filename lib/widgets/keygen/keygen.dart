@@ -32,6 +32,10 @@ class _KeyGenState extends State<Keygen> {
     });
   }
 
+  List<String> getInputs() {
+    return log.map((item) => item.result).toList();
+  }
+
   void copyResultText() {}
 
   void copyResultKey() {}
@@ -66,11 +70,7 @@ class _KeyGenState extends State<Keygen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(
-        top: 10,
-        left: 10,
-        right: 10,
-      ),
+      padding: const EdgeInsets.all(10),
       child: Column(
         children: [
           const TabHeader("Generate new key"),
