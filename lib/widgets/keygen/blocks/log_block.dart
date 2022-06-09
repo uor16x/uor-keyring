@@ -40,6 +40,10 @@ class LogBlock extends StatelessWidget {
     required this.newActionApplied,
   });
 
+  List<String> getInputs() {
+    return logItems.map((item) => item.result).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,7 +54,7 @@ class LogBlock extends StatelessWidget {
         shrinkWrap: true,
         padding: const EdgeInsets.all(10),
         children: <Widget>[
-          AddAction(currentValue: currentValue, apply: newActionApplied),
+          AddAction(inputs: getInputs(), apply: newActionApplied),
           Styles.emptySpace(10),
           ...logItems.map((item) => _LogItem(item: item)),
         ],

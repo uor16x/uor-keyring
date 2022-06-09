@@ -5,10 +5,10 @@ import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class AddAction extends StatefulWidget {
-  final String currentValue;
+  final List<String> inputs;
   final void Function(ActionLogItem item) apply;
 
-  const AddAction({super.key, required this.currentValue, required this.apply});
+  const AddAction({super.key, required this.inputs, required this.apply});
 
   @override
   State<AddAction> createState() => _AddActionState();
@@ -90,7 +90,7 @@ class _AddActionState extends State<AddAction> {
 
           // specific transformations block
           if (actionType == TransformAction.substr.asString())
-            Substr(currentValue: widget.currentValue, onTransform: onTransform),
+            Substr(inputs: [], onTransform: onTransform),
           // ---
 
           Styles.emptySpace(10),
