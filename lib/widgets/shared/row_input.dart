@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class RowInput extends StatelessWidget {
   final String label;
@@ -9,21 +11,32 @@ class RowInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.start,
+      // mainAxisAlignment: MainAxisAlignment.center,
+      // crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: 18,
+        FittedBox(
+          fit: BoxFit.fitWidth,
+          alignment: Alignment.centerLeft,
+          child: Text(
+            label,
+            style: const TextStyle(
+              fontSize: 18,
+            ),
+            textAlign: TextAlign.left,
           ),
-          textAlign: TextAlign.left,
         ),
-        TextField(
-          cursorColor: Colors.white,
-          decoration: InputDecoration(
-            hintText: label,
+        const SizedBox(width: 10),
+        Flexible(
+          child: TextField(
+            cursorColor: Colors.white,
+            keyboardType: TextInputType.number,
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            decoration: InputDecoration(
+              hintText: 'insert "$label" here',
+            ),
+            onChanged: onChanged,
           ),
-          onChanged: onChanged,
         )
       ],
     );

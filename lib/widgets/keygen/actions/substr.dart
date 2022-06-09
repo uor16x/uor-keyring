@@ -4,6 +4,7 @@ import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/shared/toast.dart';
 import 'package:uor_keyring/widgets/keygen/actions/select_input.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
+import 'package:uor_keyring/widgets/shared/row_input.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class Substr extends StatefulWidget {
@@ -16,8 +17,59 @@ class Substr extends StatefulWidget {
   State<Substr> createState() => _SubstrState();
 }
 
+class _SubstrArgInputs extends StatelessWidget {
+  void Function(String value) setFrom;
+  void Function(String value) setTo;
+
+  _SubstrArgInputs({required this.setFrom, required this.setTo});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(
+        top: 0,
+        right: 10,
+        bottom: 10,
+        left: 10,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(child: RowInput(label: 'from', onChanged: setFrom)),
+          const SizedBox(width: 10),
+          Flexible(child: RowInput(label: 'to', onChanged: setTo))
+        ],
+      ),
+    );
+  }
+}
+
+class _SubstrTransformButton extends StatelessWidget {
+  Function()? onClick;
+
+  _SubstrTransformButton({required this.onClick});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        primary: Colors.white30,
+      ),
+      onPressed: onClick,
+      onLongPress: null,
+      child: const Text(
+        'Cut',
+        style: TextStyle(fontSize: 24),
+      ),
+    );
+  }
+}
+
 class _SubstrState extends State<Substr> {
   String? selectedValue;
+  int? from;
+  int? to;
 
   void setValue(String? value) {
     setState(() {
@@ -25,36 +77,43 @@ class _SubstrState extends State<Substr> {
     });
   }
 
+  void setFrom(String value) {
+    setState(() {
+      from = int.tryParse(value);
+    });
+  }
+
+  void setTo(String value) {
+    setState(() {
+      to = int.tryParse(value);
+    });
+  }
+
+  Function()? getTransformCallback() {
+    return from != null && to != null ? transform : null;
+  }
+
+  void transform() {
+    try {
+      String result = substr(selectedValue!, from!, to!);
+      widget.onTransform(
+        ActionLogItem(
+          TransformAction.substr.asString(),
+          [from!, to!],
+          selectedValue!,
+          result,
+        ),
+      );
+    } catch (err) {
+      errToast('Failed to execute action: $err');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> valueSelectedWidgets = <Widget>[
-      Row(
-        children: [],
-      ),
-      ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: Colors.white30,
-        ),
-        onPressed: () {
-          try {
-            String result = substr(selectedValue!, 1, 5);
-            widget.onTransform(
-              ActionLogItem(
-                TransformAction.substr.asString(),
-                [1, 5],
-                selectedValue!,
-                result,
-              ),
-            );
-          } catch (err) {
-            errToast('Failed to execute action: $err');
-          }
-        },
-        child: const Text(
-          'Cut',
-          style: TextStyle(fontSize: 24),
-        ),
-      ),
+      _SubstrArgInputs(setFrom: setFrom, setTo: setTo),
+      _SubstrTransformButton(onClick: getTransformCallback()),
     ];
 
     return Container(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/shared/action_result.dart';
+import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/add_action.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
 
@@ -56,7 +57,9 @@ class LogBlock extends StatelessWidget {
         children: <Widget>[
           AddAction(inputs: getInputs(), apply: newActionApplied),
           Styles.emptySpace(10),
-          ...logItems.map((item) => _LogItem(item: item)),
+          ...logItems
+              .where((item) => item.type != TransformAction.none.asString())
+              .map((item) => _LogItem(item: item)),
         ],
       ),
     );

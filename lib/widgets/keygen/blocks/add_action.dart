@@ -90,7 +90,7 @@ class _AddActionState extends State<AddAction> {
 
           // specific transformations block
           if (actionType == TransformAction.substr.asString())
-            Substr(inputs: [], onTransform: onTransform),
+            Substr(inputs: widget.inputs, onTransform: onTransform),
           // ---
 
           Styles.emptySpace(10),

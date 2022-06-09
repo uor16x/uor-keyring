@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/shared/action_result.dart';
+import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/log_block.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/result_block.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
@@ -83,7 +84,16 @@ class _KeyGenState extends State<Keygen> {
           Expanded(
             child: LogBlock(
               currentValue: resultText,
-              logItems: log,
+              logItems: log.isEmpty
+                  ? [
+                      ActionLogItem(
+                        TransformAction.none.asString(),
+                        [],
+                        '-',
+                        resultText,
+                      )
+                    ]
+                  : log,
               newActionApplied: addAction,
             ),
           ),
