@@ -7,7 +7,6 @@ import 'package:uor_keyring/widgets/shared/styles.dart';
 import 'package:uor_keyring/widgets/shared/tab_header.dart';
 
 class Keygen extends StatefulWidget {
-  final String initialResultText = 'my-email-1';
   const Keygen({super.key});
 
   @override
@@ -19,14 +18,14 @@ class _KeyGenState extends State<Keygen> {
   late List<ActionLogItem> log;
 
   void reset({initial = false}) {
-    const String z = 'my-email-1';
-    resultText = z;
+    const String initialResultText = 'my-email-1';
+    resultText = initialResultText;
     log = [
       ActionLogItem(
         TransformAction.none.asString(),
         [],
         '-',
-        z,
+        initialResultText,
       )
     ];
     if (!initial) {
