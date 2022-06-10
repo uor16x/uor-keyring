@@ -15,17 +15,26 @@ class Keygen extends StatefulWidget {
 
 class _KeyGenState extends State<Keygen> {
   String resultText = 'my-email-1';
-  List<ActionLogItem> log = [];
+  late List<ActionLogItem> log;
 
-  void setResultText(String newResultText) {
-    print('SET RESULT TEXT $newResultText');
-    setState(() {
-      resultText = newResultText;
-    });
+  void initLog() {
+    log = [
+      ActionLogItem(
+        TransformAction.none.asString(),
+        [],
+        '-',
+        resultText,
+      ),
+    ];
+  }
+
+  _KeyGenState() {
+    initLog();
   }
 
   void addAction(ActionLogItem item) {
     setState(() {
+      resultText = item.result;
       log = [
         item,
         ...log,
@@ -84,16 +93,7 @@ class _KeyGenState extends State<Keygen> {
           Expanded(
             child: LogBlock(
               currentValue: resultText,
-              logItems: log.isEmpty
-                  ? [
-                      ActionLogItem(
-                        TransformAction.none.asString(),
-                        [],
-                        '-',
-                        resultText,
-                      )
-                    ]
-                  : log,
+              logItems: log,
               newActionApplied: addAction,
             ),
           ),
