@@ -7,8 +7,14 @@ import 'package:uor_keyring/widgets/shared/styles.dart';
 class AddAction extends StatefulWidget {
   final List<String> inputs;
   final void Function(ActionLogItem item) apply;
+  final void Function() reset;
 
-  const AddAction({super.key, required this.inputs, required this.apply});
+  const AddAction({
+    super.key,
+    required this.inputs,
+    required this.apply,
+    required this.reset,
+  });
 
   @override
   State<AddAction> createState() => _AddActionState();
@@ -104,9 +110,18 @@ class _AddActionState extends State<AddAction> {
         ],
       );
     } else {
-      addAction = TextButton(
-        onPressed: () => setMode(true),
-        child: const Text('Add transformation'),
+      addAction = Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextButton(
+            onPressed: () => setMode(true),
+            child: const Text('Add transformation'),
+          ),
+          TextButton(
+            onPressed: widget.reset,
+            child: const Text('Reset'),
+          ),
+        ],
       );
     }
 

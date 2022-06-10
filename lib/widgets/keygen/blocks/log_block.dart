@@ -33,12 +33,14 @@ class LogBlock extends StatelessWidget {
   final String currentValue;
   final List<ActionLogItem> logItems;
   final void Function(ActionLogItem item) newActionApplied;
+  final void Function() reset;
 
   const LogBlock({
     super.key,
     required this.currentValue,
     required this.logItems,
     required this.newActionApplied,
+    required this.reset,
   });
 
   List<String> getInputs() {
@@ -55,7 +57,11 @@ class LogBlock extends StatelessWidget {
         shrinkWrap: true,
         padding: const EdgeInsets.all(10),
         children: <Widget>[
-          AddAction(inputs: getInputs(), apply: newActionApplied),
+          AddAction(
+            inputs: getInputs(),
+            apply: newActionApplied,
+            reset: reset,
+          ),
           Styles.emptySpace(10),
           ...logItems
               .where((item) => item.type != TransformAction.none.asString())
