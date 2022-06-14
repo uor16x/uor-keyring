@@ -1,8 +1,19 @@
-class ActionLogItem {
-  final String type;
-  final List args;
-  final String oldValue;
-  final String result;
+import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 
-  ActionLogItem(this.type, this.args, this.oldValue, this.result);
+class ActionLogItem {
+  final TransformAction type;
+  final String input;
+  final List args;
+  final int inputIndex;
+  final String output;
+  final int outputIndex;
+
+  ActionLogItem(
+    this.type,
+    this.input,
+    this.args,
+    this.inputIndex,
+    this.output,
+    this.outputIndex,
+  );
 }

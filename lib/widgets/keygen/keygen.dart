@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/shared/action_result.dart';
+import 'package:uor_keyring/shared/log_items_collection.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/log_block.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/result_block.dart';
@@ -14,23 +15,17 @@ class Keygen extends StatefulWidget {
 }
 
 class _KeyGenState extends State<Keygen> {
-  late String resultText;
-  late List<ActionLogItem> log;
+  late String lastResultText;
+  late LogItemsCollection log;
 
   void reset({initial = false}) {
     const String initialResultText = 'my-email-1';
-    resultText = initialResultText;
-    log = [
-      ActionLogItem(
-        TransformAction.none.asString(),
-        [],
-        '-',
-        initialResultText,
-      )
-    ];
+    lastResultText = initialResultText;
+    log = LogItemsCollection();
+    log.add(TransformAction.none, '-', [], 0, initialResultText);
     if (!initial) {
       setState(() {
-        resultText = resultText;
+        lastResultText = lastResultText;
         log = log;
       });
     }
@@ -40,50 +35,29 @@ class _KeyGenState extends State<Keygen> {
     reset(initial: true);
   }
 
-  void addAction(ActionLogItem item) {
+  void addAction(
+    TransformAction type,
+    String input,
+    List args,
+    int inputIndex,
+    String output,
+  ) {
     setState(() {
-      resultText = item.result;
-      log = [
-        item,
-        ...log,
-      ];
+      ActionLogItem newItem = log.add(
+        type,
+        input,
+        args,
+        inputIndex,
+        output,
+      );
+      log = log;
+      lastResultText = newItem.output;
     });
-  }
-
-  List<String> getInputs() {
-    return log.map((item) => item.result).toList();
   }
 
   void copyResultText() {}
 
   void copyResultKey() {}
-
-  void showHistory(BuildContext context) {
-    showModalBottomSheet<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return Container(
-          padding: Styles.padding(15),
-          child: ListView(
-            scrollDirection: Axis.vertical,
-            shrinkWrap: true,
-            padding: Styles.padding(8),
-            children: const <Widget>[
-              Text("Hello1"),
-              Text("Hello1"),
-              Text("Hello1"),
-              Text("Hello1"),
-              Text("Hello1"),
-              Text("Hello1"),
-              Text("Hello1"),
-              Text("Hello1"),
-              Text("Hello1"),
-            ],
-          ),
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,14 +68,14 @@ class _KeyGenState extends State<Keygen> {
           const TabHeader("Generate new key"),
           Styles.emptySpace(15),
           ResultBlock(
-            result: resultText,
+            result: lastResultText,
             copy: copyResultText,
           ),
           Styles.emptySpace(15),
           Expanded(
             child: LogBlock(
-              currentValue: resultText,
-              logItems: log,
+              currentValue: lastResultText,
+              logItems: log.items,
               newActionApplied: addAction,
               reset: reset,
             ),

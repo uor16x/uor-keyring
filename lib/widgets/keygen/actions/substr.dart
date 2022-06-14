@@ -4,12 +4,19 @@ import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/shared/toast.dart';
 import 'package:uor_keyring/widgets/keygen/actions/select_input.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
+import 'package:uor_keyring/widgets/shared/ordered_string_item.dart';
 import 'package:uor_keyring/widgets/shared/row_input.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class Substr extends StatefulWidget {
-  final List<String> inputs;
-  final void Function(ActionLogItem item) onTransform;
+  final List<ActionLogItem> inputs;
+  final void Function(
+    TransformAction type,
+    String input,
+    List args,
+    int inputIndex,
+    String output,
+  ) onTransform;
 
   const Substr({super.key, required this.inputs, required this.onTransform});
 
@@ -67,11 +74,11 @@ class _SubstrTransformButton extends StatelessWidget {
 }
 
 class _SubstrState extends State<Substr> {
-  String? selectedValue;
+  OrderedStringItem? selectedValue;
   int? from;
   int? to;
 
-  void setValue(String? value) {
+  void setValue(OrderedStringItem? value) {
     setState(() {
       selectedValue = value;
     });
@@ -95,14 +102,13 @@ class _SubstrState extends State<Substr> {
 
   void transform() {
     try {
-      String result = substr(selectedValue!, from!, to!);
+      String result = substr(selectedValue!.value, from!, to!);
       widget.onTransform(
-        ActionLogItem(
-          TransformAction.substr.asString(),
-          [from!, to!],
-          selectedValue!,
-          result,
-        ),
+        TransformAction.substr,
+        selectedValue!.value,
+        [from!, to!],
+        selectedValue!.index,
+        result,
       );
     } catch (err) {
       errToast('Failed to execute action: $err');
