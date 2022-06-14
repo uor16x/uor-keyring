@@ -1,15 +1,17 @@
 class ActionLogItem {
   final String type;
+  final String input;
   final List args;
-  final String oldValue;
-  final int oldValueIndex;
-  final String result;
+  final int inputIndex;
+  final String output;
+  final int outputIndex;
 
   ActionLogItem(
     this.type,
+    this.input,
     this.args,
-    this.oldValue,
-    this.oldValueIndex,
-    this.result,
+    this.inputIndex,
+    this.output,
+    this.outputIndex,
   );
 }
