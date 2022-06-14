@@ -25,6 +25,7 @@ class _KeyGenState extends State<Keygen> {
         TransformAction.none.asString(),
         [],
         '-',
+        0,
         initialResultText,
       )
     ];

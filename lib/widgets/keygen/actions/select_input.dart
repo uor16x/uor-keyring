@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:uor_keyring/extensions.dart';
+import 'package:uor_keyring/widgets/shared/ordered_string_item.dart';
 
 class SelectInput extends StatefulWidget {
   List<String> inputs;
-  void Function(String? selected) onSelect;
+  void Function(OrderedStringItem? selected) onSelect;
 
   SelectInput({required this.inputs, required this.onSelect, super.key});
 
@@ -11,9 +13,9 @@ class SelectInput extends StatefulWidget {
 }
 
 class _SelectInputState extends State<SelectInput> {
-  String? selectedInput;
+  OrderedStringItem? selectedInput;
 
-  void select(String? value) {
+  void select(OrderedStringItem? value) {
     setState(() {
       selectedInput = value;
       widget.onSelect(value);
@@ -22,16 +24,16 @@ class _SelectInputState extends State<SelectInput> {
 
   @override
   Widget build(BuildContext context) {
-    List<DropdownMenuItem<String>> items = widget.inputs
-        .map(
-          (item) => DropdownMenuItem<String>(
-            value: item,
+    List<DropdownMenuItem<OrderedStringItem>> items = widget.inputs
+        .mapWithIndex<DropdownMenuItem<OrderedStringItem>>(
+          (item, index) => DropdownMenuItem<OrderedStringItem>(
+            value: OrderedStringItem(index, item),
             child: Text(item),
           ),
         )
         .toList();
 
-    return DropdownButton<String>(
+    return DropdownButton<OrderedStringItem>(
       isExpanded: true,
       value: selectedInput,
       icon: const Icon(Icons.arrow_downward),

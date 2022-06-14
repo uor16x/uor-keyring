@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uor_keyring/extensions.dart';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/add_action.dart';
@@ -6,8 +7,12 @@ import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class _LogItem extends StatelessWidget {
   final ActionLogItem item;
+  final int index;
+  static const TextStyle textStyle = TextStyle(
+    fontSize: 20,
+  );
 
-  const _LogItem({required this.item});
+  const _LogItem({required this.item, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +22,22 @@ class _LogItem extends StatelessWidget {
       ),
       padding: Styles.padding(5),
       decoration: Styles.boxDecoration,
-      child: Center(
-        child: Text(
-          '${item.type} ${item.args}',
-          style: const TextStyle(
-            fontSize: 20,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text(
+            '#${index + 1}',
+            style: textStyle,
           ),
-        ),
+          Text(
+            item.result,
+            style: textStyle,
+          ),
+          Text(
+            '#${item.oldValueIndex} >> {${item.type}}',
+            style: textStyle,
+          ),
+        ],
       ),
     );
   }
@@ -64,8 +78,14 @@ class LogBlock extends StatelessWidget {
           ),
           Styles.emptySpace(10),
           ...logItems
-              .where((item) => item.type != TransformAction.none.asString())
-              .map((item) => _LogItem(item: item)),
+              .mapWithIndex(
+                (item, index) => _LogItem(
+                  item: item,
+                  index: index,
+                ),
+              )
+              .where((logItem) =>
+                  logItem.item.type != TransformAction.none.asString())
         ],
       ),
     );
