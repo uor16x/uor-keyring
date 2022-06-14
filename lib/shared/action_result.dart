@@ -1,5 +1,7 @@
+import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
+
 class ActionLogItem {
-  final String type;
+  final TransformAction type;
   final String input;
   final List args;
   final int inputIndex;

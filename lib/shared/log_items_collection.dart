@@ -1,12 +1,13 @@
 import 'package:uor_keyring/shared/action_result.dart';
+import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 
 class LogItemsCollection {
-  final List<ActionLogItem> items;
+  final List<ActionLogItem> items = [];
 
-  LogItemsCollection({this.items = const []});
+  LogItemsCollection();
 
   ActionLogItem add(
-    String type,
+    TransformAction type,
     String input,
     List args,
     int inputIndex,
@@ -22,5 +23,9 @@ class LogItemsCollection {
     );
     items.add(item);
     return item;
+  }
+
+  List<ActionLogItem> findByInputIndex(int index) {
+    return items.where((element) => element.inputIndex == index).toList();
   }
 }
