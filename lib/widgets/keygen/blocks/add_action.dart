@@ -5,8 +5,14 @@ import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class AddAction extends StatefulWidget {
-  final List<String> inputs;
-  final void Function(ActionLogItem item) apply;
+  final List<ActionLogItem> inputs;
+  final void Function(
+    TransformAction type,
+    String input,
+    List args,
+    int inputIndex,
+    String output,
+  ) apply;
   final void Function() reset;
 
   const AddAction({
@@ -76,9 +82,15 @@ class _AddActionState extends State<AddAction> {
     });
   }
 
-  onTransform(ActionLogItem item) {
+  onTransform(
+    TransformAction type,
+    String input,
+    List args,
+    int inputIndex,
+    String output,
+  ) {
     reset();
-    widget.apply(item);
+    widget.apply(type, input, args, inputIndex, output);
   }
 
   @override

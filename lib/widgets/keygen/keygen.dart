@@ -68,14 +68,14 @@ class _KeyGenState extends State<Keygen> {
           const TabHeader("Generate new key"),
           Styles.emptySpace(15),
           ResultBlock(
-            result: resultText,
+            result: lastResultText,
             copy: copyResultText,
           ),
           Styles.emptySpace(15),
           Expanded(
             child: LogBlock(
-              currentValue: resultText,
-              logItems: log,
+              currentValue: lastResultText,
+              logItems: log.items,
               newActionApplied: addAction,
               reset: reset,
             ),

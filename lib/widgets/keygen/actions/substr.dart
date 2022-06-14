@@ -9,8 +9,14 @@ import 'package:uor_keyring/widgets/shared/row_input.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class Substr extends StatefulWidget {
-  final List<String> inputs;
-  final void Function(ActionLogItem item) onTransform;
+  final List<ActionLogItem> inputs;
+  final void Function(
+    TransformAction type,
+    String input,
+    List args,
+    int inputIndex,
+    String output,
+  ) onTransform;
 
   const Substr({super.key, required this.inputs, required this.onTransform});
 
@@ -98,13 +104,11 @@ class _SubstrState extends State<Substr> {
     try {
       String result = substr(selectedValue!.value, from!, to!);
       widget.onTransform(
-        ActionLogItem(
-          TransformAction.substr.asString(),
-          [from!, to!],
-          selectedValue!.value,
-          selectedValue!.index,
-          result,
-        ),
+        TransformAction.substr,
+        selectedValue!.value,
+        [from!, to!],
+        selectedValue!.index,
+        result,
       );
     } catch (err) {
       errToast('Failed to execute action: $err');

@@ -64,7 +64,7 @@ class ResultBlock extends StatelessWidget {
       padding: Styles.padding(),
       decoration: Styles.boxDecoration,
       child: _ResultText(
-        label: 'Encoded result example',
+        label: 'Last result',
         text: result,
         button: 'Copy key',
         onPress: copy,
