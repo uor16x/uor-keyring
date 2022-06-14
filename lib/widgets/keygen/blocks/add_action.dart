@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/shared/action_result.dart';
+import 'package:uor_keyring/widgets/keygen/actions/concat.dart';
 import 'package:uor_keyring/widgets/keygen/actions/substr.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
@@ -109,6 +110,8 @@ class _AddActionState extends State<AddAction> {
           // specific transformations block
           if (actionType == TransformAction.substr.asString())
             Substr(inputs: widget.inputs, onTransform: onTransform),
+          if (actionType == TransformAction.concat.asString())
+            Concat(inputs: widget.inputs, onTransform: onTransform),
           // ---
 
           Styles.emptySpace(10),
