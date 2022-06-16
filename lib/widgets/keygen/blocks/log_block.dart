@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uor_keyring/extensions.dart';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/add_action.dart';
@@ -62,13 +63,7 @@ class _LogItem extends StatelessWidget {
 class LogBlock extends StatelessWidget {
   final String currentValue;
   final List<ActionLogItem> logItems;
-  final void Function(
-    TransformAction type,
-    String input,
-    List args,
-    int inputIndex,
-    String output,
-  ) newActionApplied;
+  final ProcessActionMethod newActionApplied;
   final void Function() reset;
 
   const LogBlock({

@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:uor_keyring/extensions.dart';
 import 'package:uor_keyring/transform/concat.dart';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/widgets/keygen/actions/select_input.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
-import 'package:uor_keyring/widgets/shared/ordered_string_item.dart';
+import 'package:uor_keyring/shared/ordered_string_item.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class Concat extends StatefulWidget {
   final List<ActionLogItem> inputs;
-  final void Function(
-    TransformAction type,
-    String input,
-    List args,
-    int inputIndex,
-    String output,
-  ) onTransform;
+  final ProcessActionMethod onTransform;
 
   const Concat({super.key, required this.inputs, required this.onTransform});
 
@@ -75,8 +70,8 @@ class _ConcatState extends State<Concat> {
       String result = concat(string1!.value, string2!.value, separator);
       widget.onTransform(
         TransformAction.concat,
-        string1!.value,
-        [string2!.value, separator],
+        string1!,
+        [string2, separator],
         string1!.index,
         result,
       );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/shared/log_items_collection.dart';
+import 'package:uor_keyring/shared/ordered_string_item.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/log_block.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/result_block.dart';
@@ -22,7 +23,8 @@ class _KeyGenState extends State<Keygen> {
     const String initialResultText = 'my-email-1';
     lastResultText = initialResultText;
     log = LogItemsCollection();
-    log.add(TransformAction.none, '-', [], 0, initialResultText);
+    log.add(TransformAction.none, OrderedStringItem(0, '-'), [], 0,
+        initialResultText);
     if (!initial) {
       setState(() {
         lastResultText = lastResultText;
@@ -37,7 +39,7 @@ class _KeyGenState extends State<Keygen> {
 
   void addAction(
     TransformAction type,
-    String input,
+    OrderedStringItem input,
     List args,
     int inputIndex,
     String output,

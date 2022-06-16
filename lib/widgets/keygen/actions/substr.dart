@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:uor_keyring/extensions.dart';
 import 'package:uor_keyring/transform/substr.dart';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/widgets/keygen/actions/select_input.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
-import 'package:uor_keyring/widgets/shared/ordered_string_item.dart';
+import 'package:uor_keyring/shared/ordered_string_item.dart';
 import 'package:uor_keyring/widgets/shared/row_input.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class Substr extends StatefulWidget {
   final List<ActionLogItem> inputs;
-  final void Function(
-    TransformAction type,
-    String input,
-    List args,
-    int inputIndex,
-    String output,
-  ) onTransform;
+  final ProcessActionMethod onTransform;
 
   const Substr({super.key, required this.inputs, required this.onTransform});
 
@@ -104,7 +99,7 @@ class _SubstrState extends State<Substr> {
       String result = substr(selectedValue!.value, from!, to!);
       widget.onTransform(
         TransformAction.substr,
-        selectedValue!.value,
+        selectedValue!,
         [from!, to!],
         selectedValue!.index,
         result,
