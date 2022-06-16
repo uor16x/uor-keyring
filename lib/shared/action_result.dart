@@ -1,8 +1,9 @@
+import 'package:uor_keyring/shared/ordered_string_item.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 
 class ActionLogItem {
   final TransformAction type;
-  final String input;
+  final OrderedStringItem input;
   final List args;
   final int inputIndex;
   final String output;

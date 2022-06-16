@@ -1,4 +1,5 @@
 import 'package:uor_keyring/shared/action_result.dart';
+import 'package:uor_keyring/shared/ordered_string_item.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 
 class LogItemsCollection {
@@ -8,7 +9,7 @@ class LogItemsCollection {
 
   ActionLogItem add(
     TransformAction type,
-    String input,
+    OrderedStringItem input,
     List args,
     int inputIndex,
     String output,

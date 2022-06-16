@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:uor_keyring/extensions.dart';
 import 'package:uor_keyring/shared/action_result.dart';
+import 'package:uor_keyring/shared/ordered_string_item.dart';
 import 'package:uor_keyring/widgets/keygen/actions/concat.dart';
 import 'package:uor_keyring/widgets/keygen/actions/substr.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
@@ -7,13 +9,7 @@ import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class AddAction extends StatefulWidget {
   final List<ActionLogItem> inputs;
-  final void Function(
-    TransformAction type,
-    String input,
-    List args,
-    int inputIndex,
-    String output,
-  ) apply;
+  final ProcessActionMethod apply;
   final void Function() reset;
 
   const AddAction({
@@ -85,7 +81,7 @@ class _AddActionState extends State<AddAction> {
 
   onTransform(
     TransformAction type,
-    String input,
+    OrderedStringItem input,
     List args,
     int inputIndex,
     String output,
