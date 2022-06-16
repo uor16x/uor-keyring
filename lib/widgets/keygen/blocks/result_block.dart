@@ -27,7 +27,9 @@ class _ResultText extends StatelessWidget {
         Styles.emptySpace(),
         Text(
           text,
+          maxLines: 4,
           style: const TextStyle(fontSize: 21),
+          overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.left,
         ),
         Styles.emptySpace(),

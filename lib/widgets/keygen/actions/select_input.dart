@@ -29,7 +29,10 @@ class _SelectInputState extends State<SelectInput> {
         .mapWithIndex<DropdownMenuItem<OrderedStringItem>>(
           (item, index) => DropdownMenuItem<OrderedStringItem>(
             value: OrderedStringItem(index, item.output),
-            child: Text('#${item.outputIndex}: ${item.output}'),
+            child: Text(
+              '#${item.outputIndex}: ${item.output}',
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         )
         .toList();
