@@ -24,9 +24,7 @@ class _LogItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        showInfo(context);
-      }, // Handle your callback
+      onTap: () => showInfo(context),
       child: Container(
         padding: const EdgeInsets.all(15),
         decoration: Styles.boxDecoration,
@@ -43,7 +41,6 @@ class _LogItem extends StatelessWidget {
                 ),
               ),
             ),
-            Styles.emptySpace(),
             Expanded(
               flex: 4,
               child: Container(
@@ -55,18 +52,6 @@ class _LogItem extends StatelessWidget {
                 ),
               ),
             ),
-            Styles.emptySpace(),
-            // Expanded(
-            //   flex: 3,
-            //   child: Container(
-            //     alignment: Alignment.centerLeft,
-            //     child: Text(
-            //       '#${item.inputIndex} ⇒ ${item.type.asString()} ${item.args}',
-            //       style: textStyle,
-            //       overflow: TextOverflow.fade,
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),
@@ -115,24 +100,5 @@ class LogBlock extends StatelessWidget {
             : Card(child: items[index - 1]);
       },
     );
-    // return Container(
-    //   // padding: Styles.padding(),
-    //   decoration: Styles.boxDecoration,
-    //   child: ListView.separated(
-    //     scrollDirection: Axis.vertical,
-    //     shrinkWrap: true,
-    //     padding: const EdgeInsets.all(10),
-    //     itemBuilder: itemBuilder,
-    //     children: <Widget>[
-    //       AddAction(
-    //         inputs: logItems,
-    //         apply: newActionApplied,
-    //         reset: reset,
-    //       ),
-    //       Styles.emptySpace(10),
-    //       // items
-    //     ],
-    //   ),
-    // );
   }
 }
