@@ -36,6 +36,7 @@ class RowInput extends StatelessWidget {
               hintText: 'insert "$label" here',
             ),
             onChanged: onChanged,
+            textInputAction: TextInputAction.next,
           ),
         )
       ],
