@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/add_action.dart';
+import 'package:uor_keyring/widgets/keygen/blocks/item_info.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class _LogItem extends StatelessWidget {
@@ -12,14 +13,21 @@ class _LogItem extends StatelessWidget {
 
   const _LogItem(this.item);
 
+  showInfo(BuildContext context) {
+    _LogItem logItem = context.widget as _LogItem;
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => ItemInfo(logItem.item),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {}, // Handle your callback
+      onTap: () {
+        showInfo(context);
+      }, // Handle your callback
       child: Container(
-        // margin: const EdgeInsets.only(
-        //   bottom: 10,
-        // ),
         padding: const EdgeInsets.all(15),
         decoration: Styles.boxDecoration,
         child: Row(
