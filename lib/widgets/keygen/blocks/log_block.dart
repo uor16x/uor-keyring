@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/add_action.dart';
+import 'package:uor_keyring/widgets/keygen/blocks/item_info.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class _LogItem extends StatelessWidget {
@@ -12,14 +13,19 @@ class _LogItem extends StatelessWidget {
 
   const _LogItem(this.item);
 
+  showInfo(BuildContext context) {
+    _LogItem logItem = context.widget as _LogItem;
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => ItemInfo(logItem.item),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {}, // Handle your callback
+      onTap: () => showInfo(context),
       child: Container(
-        // margin: const EdgeInsets.only(
-        //   bottom: 10,
-        // ),
         padding: const EdgeInsets.all(15),
         decoration: Styles.boxDecoration,
         child: Row(
@@ -35,7 +41,6 @@ class _LogItem extends StatelessWidget {
                 ),
               ),
             ),
-            Styles.emptySpace(),
             Expanded(
               flex: 4,
               child: Container(
@@ -47,18 +52,6 @@ class _LogItem extends StatelessWidget {
                 ),
               ),
             ),
-            Styles.emptySpace(),
-            // Expanded(
-            //   flex: 3,
-            //   child: Container(
-            //     alignment: Alignment.centerLeft,
-            //     child: Text(
-            //       '#${item.inputIndex} ⇒ ${item.type.asString()} ${item.args}',
-            //       style: textStyle,
-            //       overflow: TextOverflow.fade,
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),
@@ -107,24 +100,5 @@ class LogBlock extends StatelessWidget {
             : Card(child: items[index - 1]);
       },
     );
-    // return Container(
-    //   // padding: Styles.padding(),
-    //   decoration: Styles.boxDecoration,
-    //   child: ListView.separated(
-    //     scrollDirection: Axis.vertical,
-    //     shrinkWrap: true,
-    //     padding: const EdgeInsets.all(10),
-    //     itemBuilder: itemBuilder,
-    //     children: <Widget>[
-    //       AddAction(
-    //         inputs: logItems,
-    //         apply: newActionApplied,
-    //         reset: reset,
-    //       ),
-    //       Styles.emptySpace(10),
-    //       // items
-    //     ],
-    //   ),
-    // );
   }
 }
