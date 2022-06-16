@@ -14,28 +14,53 @@ class _LogItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(
-        bottom: 10,
-      ),
-      padding: Styles.padding(5),
-      decoration: Styles.boxDecoration,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Text(
-            '#${item.outputIndex}',
-            style: textStyle,
-          ),
-          Text(
-            item.output,
-            style: textStyle,
-          ),
-          Text(
-            '#${item.inputIndex} ⇒ ${item.type.asString()} ${item.args}',
-            style: textStyle,
-          ),
-        ],
+    return InkWell(
+      onTap: () {}, // Handle your callback
+      child: Container(
+        // margin: const EdgeInsets.only(
+        //   bottom: 10,
+        // ),
+        padding: const EdgeInsets.all(15),
+        decoration: Styles.boxDecoration,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Expanded(
+              flex: 1,
+              child: Center(
+                child: Text(
+                  '#${item.outputIndex}',
+                  style: textStyle,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+            Styles.emptySpace(),
+            Expanded(
+              flex: 4,
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  item.output,
+                  style: textStyle,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ),
+            Styles.emptySpace(),
+            // Expanded(
+            //   flex: 3,
+            //   child: Container(
+            //     alignment: Alignment.centerLeft,
+            //     child: Text(
+            //       '#${item.inputIndex} ⇒ ${item.type.asString()} ${item.args}',
+            //       style: textStyle,
+            //       overflow: TextOverflow.fade,
+            //     ),
+            //   ),
+            // ),
+          ],
+        ),
       ),
     );
   }
@@ -63,25 +88,43 @@ class LogBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // padding: Styles.padding(),
-      decoration: Styles.boxDecoration,
-      child: ListView(
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        padding: const EdgeInsets.all(10),
-        children: <Widget>[
-          AddAction(
-            inputs: logItems,
-            apply: newActionApplied,
-            reset: reset,
-          ),
-          Styles.emptySpace(10),
-          ...logItems
-              .map((item) => _LogItem(item))
-              .where((element) => element.item.type != TransformAction.none),
-        ],
-      ),
+    List<_LogItem> items = logItems
+        .map((item) => _LogItem(item))
+        .where((element) => element.item.type != TransformAction.none)
+        .toList();
+    return ListView.builder(
+      padding: Styles.padding(),
+      itemCount: items.length + 1,
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return index == 0
+            ? AddAction(
+                inputs: logItems,
+                apply: newActionApplied,
+                reset: reset,
+              )
+            : Card(child: items[index - 1]);
+      },
     );
+    // return Container(
+    //   // padding: Styles.padding(),
+    //   decoration: Styles.boxDecoration,
+    //   child: ListView.separated(
+    //     scrollDirection: Axis.vertical,
+    //     shrinkWrap: true,
+    //     padding: const EdgeInsets.all(10),
+    //     itemBuilder: itemBuilder,
+    //     children: <Widget>[
+    //       AddAction(
+    //         inputs: logItems,
+    //         apply: newActionApplied,
+    //         reset: reset,
+    //       ),
+    //       Styles.emptySpace(10),
+    //       // items
+    //     ],
+    //   ),
+    // );
   }
 }
