@@ -9,5 +9,10 @@ class OrderedStringItem {
   @override
   int get hashCode => index;
 
+  @override
+  String toString() {
+    return '[#$index] $value';
+  }
+
   OrderedStringItem(this.index, this.value);
 }

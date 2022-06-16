@@ -10,8 +10,10 @@ class _ItemInfoTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> args =
-        item.args.map((arg) => arg.isNotEmpty ? '>> $arg' : '').toList();
+    List<String> args = item.args
+        .map((arg) => arg.toString())
+        .map((arg) => arg.isNotEmpty ? '>> $arg' : '')
+        .toList();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

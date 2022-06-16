@@ -76,7 +76,7 @@ class _ConcatState extends State<Concat> {
       widget.onTransform(
         TransformAction.concat,
         string1!.value,
-        [string2!.value, separator],
+        [string2, separator],
         string1!.index,
         result,
       );
