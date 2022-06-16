@@ -18,7 +18,7 @@ class _ItemInfoTitle extends StatelessWidget {
       children: [
         Text(
           item.type.asString(),
-          style: const TextStyle(fontSize: 20),
+          style: const TextStyle(fontSize: 24),
         ),
         Text('@ ${item.input}'),
         Text(args.join('\n'))
@@ -43,7 +43,7 @@ class ItemInfo extends StatelessWidget {
           ListTile(
             leading: Text(
               '#${item.outputIndex}',
-              style: const TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 22),
             ),
             title: _ItemInfoTitle(item),
             subtitle: Text(item.output),
