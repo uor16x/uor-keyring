@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uor_keyring/service/transform/substr.dart';
+import 'package:uor_keyring/transform/substr.dart';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/shared/toast.dart';
 import 'package:uor_keyring/widgets/keygen/actions/select_input.dart';
