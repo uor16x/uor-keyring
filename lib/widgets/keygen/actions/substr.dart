@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/transform/substr.dart';
 import 'package:uor_keyring/shared/action_result.dart';
-import 'package:uor_keyring/shared/toast.dart';
 import 'package:uor_keyring/widgets/keygen/actions/select_input.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 import 'package:uor_keyring/widgets/shared/ordered_string_item.dart';
@@ -111,7 +110,7 @@ class _SubstrState extends State<Substr> {
         result,
       );
     } catch (err) {
-      errToast('Failed to execute action: $err');
+      print(err);
     }
   }
 
