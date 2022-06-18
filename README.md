@@ -5,7 +5,7 @@ Created sequence is being encrypted with password, so it could be stored openly 
 
 Implemented transformations:
 
-- [ ] Substring
+- [x] Substring
 
 Ability to take a substring from each intermediate result.
 Uses 'from' and 'to' indicies as input.
@@ -13,11 +13,15 @@ Is case if string input is too short for given indicies - string would be repeat
 
 - [ ] Concat
 
-Ability to concat two any intermediate results.
+Ability to concat two any intermediate results with optional separator.
 
 - [ ] Replace
 
 Ability to replace given symbol occurrences with other string.
+
+- [ ] Repeat
+
+Ability to repeat the string given number of times.
 
 - [ ] Reverse
 
