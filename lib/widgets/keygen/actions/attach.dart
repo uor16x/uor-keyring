@@ -14,6 +14,10 @@ String getAttachPositionString(AttachPosition pos) {
 // ===
 
 class _SwitchAttachPosition extends StatefulWidget {
+  void Function(AttachPosition pos) onSelect;
+
+  _SwitchAttachPosition(this.onSelect);
+
   @override
   State<_SwitchAttachPosition> createState() => _SwitchAttachPositionState();
 }
@@ -25,6 +29,7 @@ class _SwitchAttachPositionState extends State<_SwitchAttachPosition> {
     setState(() {
       value = switchValue ? AttachPosition.after : AttachPosition.before;
     });
+    widget.onSelect(value);
   }
 
   @override
@@ -59,6 +64,10 @@ class _AttachPositionLabel extends StatelessWidget {
 // ===
 
 class _AttachPositionSelector extends StatelessWidget {
+  void Function(AttachPosition pos) onSelect;
+
+  _AttachPositionSelector(this.onSelect);
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -67,7 +76,7 @@ class _AttachPositionSelector extends StatelessWidget {
       children: [
         _AttachPositionLabel(getAttachPositionString(AttachPosition.before)),
         Expanded(
-          child: _SwitchAttachPosition(),
+          child: _SwitchAttachPosition(onSelect),
         ),
         _AttachPositionLabel(getAttachPositionString(AttachPosition.after)),
       ],
@@ -88,10 +97,17 @@ class Attach extends StatefulWidget {
 
 class _AttachState extends State<Attach> {
   OrderedStringItem? item;
+  AttachPosition pos = AttachPosition.after;
 
   void setItem(OrderedStringItem? value) {
     setState(() {
       item = value;
+    });
+  }
+
+  void setPosition(AttachPosition currPos) {
+    setState(() {
+      pos = currPos;
     });
   }
 
@@ -105,7 +121,7 @@ class _AttachState extends State<Attach> {
         children: [
           SelectInput(inputs: widget.inputs, onSelect: setItem),
           Styles.emptySpace(),
-          SelectInput(inputs: widget.inputs, onSelect: setItem),
+          _AttachPositionSelector(setPosition),
         ],
       ),
     );
