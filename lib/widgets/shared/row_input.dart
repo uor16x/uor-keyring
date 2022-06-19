@@ -12,8 +12,6 @@ class RowInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
-      // mainAxisAlignment: MainAxisAlignment.center,
-      // crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         FittedBox(
           fit: BoxFit.fitWidth,

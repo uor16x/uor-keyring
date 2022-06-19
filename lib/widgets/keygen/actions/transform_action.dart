@@ -2,6 +2,7 @@ enum TransformAction {
   none,
   substr,
   concat,
+  attach,
 }
 
 extension ParseToString on TransformAction {
