@@ -128,11 +128,18 @@ class Attach extends StatefulWidget {
 
 class _AttachState extends State<Attach> {
   OrderedStringItem? item;
+  String? attachment;
   AttachPosition pos = AttachPosition.after;
 
   void setItem(OrderedStringItem? value) {
     setState(() {
       item = value;
+    });
+  }
+
+  void setAttachment(String? value) {
+    setState(() {
+      attachment = value;
     });
   }
 
@@ -143,7 +150,7 @@ class _AttachState extends State<Attach> {
   }
 
   Function()? getTransformCallback() {
-    return item != null ? transform : null;
+    return item != null && attachment != null ? transform : null;
   }
 
   void transform() {
@@ -171,6 +178,18 @@ class _AttachState extends State<Attach> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SelectInput(inputs: widget.inputs, onSelect: setItem),
+          // Styles.emptySpace(),
+          // TODO: make this shared widget
+          TextField(
+            cursorColor: Colors.white,
+            keyboardType: TextInputType.number,
+            decoration: const InputDecoration(
+              hintText: 'insert attachment here',
+            ),
+            onChanged: setAttachment,
+            textInputAction: TextInputAction.next,
+          ),
+          Styles.emptySpace(10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
