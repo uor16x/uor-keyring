@@ -48,14 +48,14 @@ class _AttachPositionLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FittedBox(
-      fit: BoxFit.fitWidth,
-      alignment: Alignment.centerLeft,
+      fit: BoxFit.scaleDown,
+      alignment: Alignment.centerRight,
       child: Text(
         label,
         style: const TextStyle(
           fontSize: 18,
         ),
-        textAlign: TextAlign.left,
+        textAlign: TextAlign.center,
       ),
     );
   }
@@ -70,16 +70,20 @@ class _AttachPositionSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _AttachPositionLabel(getAttachPositionString(AttachPosition.before)),
-        Expanded(
-          child: _SwitchAttachPosition(onSelect),
-        ),
-        _AttachPositionLabel(getAttachPositionString(AttachPosition.after)),
-      ],
+    return Container(
+      decoration: Styles.boxDecoration,
+      padding: const EdgeInsets.only(
+        left: 10,
+        right: 10,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _AttachPositionLabel(getAttachPositionString(AttachPosition.before)),
+          Expanded(child: _SwitchAttachPosition(onSelect)),
+          _AttachPositionLabel(getAttachPositionString(AttachPosition.after)),
+        ],
+      ),
     );
   }
 }
@@ -120,8 +124,29 @@ class _AttachState extends State<Attach> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SelectInput(inputs: widget.inputs, onSelect: setItem),
-          Styles.emptySpace(),
-          _AttachPositionSelector(setPosition),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(child: _AttachPositionSelector(setPosition)),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.only(left: 5),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white30,
+                    ),
+                    onPressed: () {},
+                    onLongPress: null,
+                    child: const Text(
+                      'Attach',
+                      style: TextStyle(fontSize: 24),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

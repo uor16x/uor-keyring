@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uor_keyring/extensions.dart';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/shared/ordered_string_item.dart';
+import 'package:uor_keyring/widgets/keygen/actions/attach.dart';
 import 'package:uor_keyring/widgets/keygen/actions/concat.dart';
 import 'package:uor_keyring/widgets/keygen/actions/substr.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
@@ -108,6 +109,8 @@ class _AddActionState extends State<AddAction> {
             Substr(inputs: widget.inputs, onTransform: onTransform),
           if (actionType == TransformAction.concat.asString())
             Concat(inputs: widget.inputs, onTransform: onTransform),
+          if (actionType == TransformAction.attach.asString())
+            Attach(inputs: widget.inputs, onTransform: onTransform),
           // ---
 
           Styles.emptySpace(10),
