@@ -90,6 +90,33 @@ class _AttachPositionSelector extends StatelessWidget {
 
 // ===
 
+// TODO: move action button to shared
+class _AttachButton extends StatelessWidget {
+  Function()? onClick;
+
+  _AttachButton({required this.onClick});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(left: 5),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: Colors.white30,
+        ),
+        onPressed: onClick,
+        onLongPress: null,
+        child: const Text(
+          'Attach',
+          style: TextStyle(fontSize: 24),
+        ),
+      ),
+    );
+  }
+}
+
+// ===
+
 class Attach extends StatefulWidget {
   final List<ActionLogItem> inputs;
   final ProcessActionMethod onTransform;
@@ -115,6 +142,26 @@ class _AttachState extends State<Attach> {
     });
   }
 
+  Function()? getTransformCallback() {
+    return item != null ? transform : null;
+  }
+
+  void transform() {
+    // try {
+    //   String result = concat(string1!.value, string2!.value, separator);
+    //   widget.onTransform(
+    //     TransformAction.concat,
+    //     string1!,
+    //     [string2, separator],
+    //     string1!.index,
+    //     result,
+    //   );
+    // } catch (err) {
+    //   // TODO: err catching
+    //   print(err);
+    // }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -129,22 +176,7 @@ class _AttachState extends State<Attach> {
             children: [
               Expanded(child: _AttachPositionSelector(setPosition)),
               const SizedBox(width: 10),
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.only(left: 5),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white30,
-                    ),
-                    onPressed: () {},
-                    onLongPress: null,
-                    child: const Text(
-                      'Attach',
-                      style: TextStyle(fontSize: 24),
-                    ),
-                  ),
-                ),
-              ),
+              Expanded(child: _AttachButton(onClick: getTransformCallback())),
             ],
           ),
         ],
