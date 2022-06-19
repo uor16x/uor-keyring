@@ -23,6 +23,10 @@ Ability to replace given symbol occurrences with other string.
 
 Ability to repeat the string given number of times.
 
+- [ ] Attach
+
+Ability to attach a string to any intermediate results.
+
 - [ ] Reverse
 
 Ability to reverse any intermediate result.
