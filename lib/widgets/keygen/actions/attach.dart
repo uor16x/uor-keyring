@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:uor_keyring/extensions.dart';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/shared/ordered_string_item.dart';
+import 'package:uor_keyring/transform/attach.dart';
 import 'package:uor_keyring/widgets/keygen/actions/select_input.dart';
+import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
 
 enum AttachPosition { before, after }
@@ -23,7 +25,7 @@ class _SwitchAttachPosition extends StatefulWidget {
 }
 
 class _SwitchAttachPositionState extends State<_SwitchAttachPosition> {
-  AttachPosition value = AttachPosition.after;
+  AttachPosition value = AttachPosition.before;
 
   void setValue(bool switchValue) {
     setState(() {
@@ -129,7 +131,7 @@ class Attach extends StatefulWidget {
 class _AttachState extends State<Attach> {
   OrderedStringItem? item;
   String? attachment;
-  AttachPosition pos = AttachPosition.after;
+  AttachPosition pos = AttachPosition.before;
 
   void setItem(OrderedStringItem? value) {
     setState(() {
@@ -154,19 +156,23 @@ class _AttachState extends State<Attach> {
   }
 
   void transform() {
-    // try {
-    //   String result = concat(string1!.value, string2!.value, separator);
-    //   widget.onTransform(
-    //     TransformAction.concat,
-    //     string1!,
-    //     [string2, separator],
-    //     string1!.index,
-    //     result,
-    //   );
-    // } catch (err) {
-    //   // TODO: err catching
-    //   print(err);
-    // }
+    try {
+      String result = attach(
+        item!.value,
+        attachment!,
+        pos == AttachPosition.after,
+      );
+      widget.onTransform(
+        TransformAction.attach,
+        item!,
+        [attachment, getAttachPositionString(pos)],
+        item!.index,
+        result,
+      );
+    } catch (err) {
+      // TODO: err catching
+      print(err);
+    }
   }
 
   @override
