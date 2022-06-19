@@ -87,10 +87,13 @@ class LogBlock extends StatelessWidget {
       shrinkWrap: true,
       itemBuilder: (context, index) {
         return index == 0
-            ? AddAction(
-                inputs: logItems,
-                apply: newActionApplied,
-                reset: reset,
+            ? Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                child: AddAction(
+                  inputs: logItems,
+                  apply: newActionApplied,
+                  reset: reset,
+                ),
               )
             : Card(child: items[index - 1]);
       },
