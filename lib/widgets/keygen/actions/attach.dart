@@ -7,6 +7,12 @@ import 'package:uor_keyring/widgets/shared/styles.dart';
 
 enum AttachPosition { before, after }
 
+String getAttachPositionString(AttachPosition pos) {
+  return pos.toString().split('.').last;
+}
+
+// ===
+
 class _SwitchAttachPosition extends StatefulWidget {
   @override
   State<_SwitchAttachPosition> createState() => _SwitchAttachPositionState();
@@ -26,6 +32,50 @@ class _SwitchAttachPositionState extends State<_SwitchAttachPosition> {
     return Switch(value: value == AttachPosition.after, onChanged: setValue);
   }
 }
+
+// ===
+
+class _AttachPositionLabel extends StatelessWidget {
+  final String label;
+
+  const _AttachPositionLabel(this.label);
+
+  @override
+  Widget build(BuildContext context) {
+    return FittedBox(
+      fit: BoxFit.fitWidth,
+      alignment: Alignment.centerLeft,
+      child: Text(
+        label,
+        style: const TextStyle(
+          fontSize: 18,
+        ),
+        textAlign: TextAlign.left,
+      ),
+    );
+  }
+}
+
+// ===
+
+class _AttachPositionSelector extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _AttachPositionLabel(getAttachPositionString(AttachPosition.before)),
+        Expanded(
+          child: _SwitchAttachPosition(),
+        ),
+        _AttachPositionLabel(getAttachPositionString(AttachPosition.after)),
+      ],
+    );
+  }
+}
+
+// ===
 
 class Attach extends StatefulWidget {
   final List<ActionLogItem> inputs;
