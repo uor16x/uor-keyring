@@ -90,7 +90,17 @@ class _ConcatState extends State<Concat> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           SelectInput(inputs: widget.inputs, onSelect: setString1),
-          Styles.emptySpace(), // TODO: separator
+          Styles.emptySpace(),
+          TextField(
+            cursorColor: Colors.white,
+            keyboardType: TextInputType.number,
+            decoration: const InputDecoration(
+              hintText: 'insert separator here',
+            ),
+            onChanged: setSeparator,
+            textInputAction: TextInputAction.next,
+          ),
+          Styles.emptySpace(),
           SelectInput(inputs: widget.inputs, onSelect: setString2),
           Styles.emptySpace(),
           _ConcatTransformButton(onClick: getTransformCallback()),
