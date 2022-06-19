@@ -1,7 +1,20 @@
+import 'package:flutter/foundation.dart';
+import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'widgets/home.dart';
 
-void main() {
+Future testWindowFunctions() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  if (defaultTargetPlatform == TargetPlatform.windows && !kIsWeb) {
+    double width = 550;
+    double height = 700;
+    await DesktopWindow.setMinWindowSize(Size(width, height));
+    await DesktopWindow.setMaxWindowSize(Size(width, height));
+  }
+}
+
+Future<void> main() async {
+  await testWindowFunctions();
   runApp(const MyApp());
 }
 
