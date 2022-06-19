@@ -11,9 +11,13 @@ Ability to take a substring from each intermediate result.
 Uses 'from' and 'to' indicies as input.
 Is case if string input is too short for given indicies - string would be repeated to fit the length.
 
-- [ ] Concat
+- [x] Concat
 
 Ability to concat two any intermediate results with optional separator.
+
+- [x] Attach
+
+Ability to attach a string to any intermediate results.
 
 - [ ] Replace
 
@@ -22,10 +26,6 @@ Ability to replace given symbol occurrences with other string.
 - [ ] Repeat
 
 Ability to repeat the string given number of times.
-
-- [ ] Attach
-
-Ability to attach a string to any intermediate results.
 
 - [ ] Reverse
 
