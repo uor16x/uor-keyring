@@ -60,10 +60,6 @@ class _KeyGenState extends State<Keygen> {
 
   void copyResultText() {
     String key = Generator.getKey(log);
-    bool z = [].every(
-      (element) => element == 'zxc',
-    );
-    print(z);
   }
 
   void copyResultKey() {}

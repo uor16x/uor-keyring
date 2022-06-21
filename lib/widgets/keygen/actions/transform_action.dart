@@ -17,8 +17,8 @@ class TransformActionProcessor {
   static const Map<TransformAction, List<Type>> _actionInputsTypes = {
     TransformAction.none: [],
     TransformAction.substr: [String, int, int],
-    TransformAction.concat: [],
-    TransformAction.attach: [],
+    TransformAction.concat: [String, String, String],
+    TransformAction.attach: [String, String, String],
   };
 
   static bool isValid(TransformAction type, List input) {
@@ -27,7 +27,7 @@ class TransformActionProcessor {
     }
     List<Type> currentActionInputTypes = _actionInputsTypes[type]!;
     return currentActionInputTypes.everyWithIndex(
-      (actionType, index) => actionType == input[0].runtimeType,
+      (actionType, index) => actionType == input[index].runtimeType,
     );
   }
 }
