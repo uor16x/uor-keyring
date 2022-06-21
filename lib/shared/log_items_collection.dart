@@ -27,26 +27,4 @@ class LogItemsCollection {
     items.add(item);
     return item;
   }
-
-  List<ActionLogItem> findByInputIndex(int index) {
-    return items.where((element) => element.inputIndex == index).toList();
-  }
-
-  bool isUsed(ActionLogItem item) {
-    return items
-        .where(
-          (listItem) =>
-              listItem.inputIndex == item.outputIndex ||
-              listItem.args.any(
-                (arg) =>
-                    arg is OrderedStringItem && arg.index == item.outputIndex,
-              ),
-        )
-        .toList()
-        .isNotEmpty;
-  }
-
-  List<ActionLogItem> getUsedItems() {
-    return items.where((item) => isUsed(item)).toList();
-  }
 }

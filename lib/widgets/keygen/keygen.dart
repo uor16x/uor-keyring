@@ -60,6 +60,7 @@ class _KeyGenState extends State<Keygen> {
 
   void copyResultText() {
     String key = Generator.getKey(log);
+    print('');
   }
 
   void copyResultKey() {}
