@@ -24,8 +24,13 @@ class _KeyGenState extends State<Keygen> {
     const String initialResultText = 'my-email-1';
     lastResultText = initialResultText;
     log = LogItemsCollection();
-    log.add(TransformAction.none, OrderedStringItem(0, '-'), [], 0,
-        initialResultText);
+    log.add(
+      TransformAction.none,
+      OrderedStringItem(0, '-'),
+      [],
+      0,
+      initialResultText,
+    );
     if (!initial) {
       setState(() {
         lastResultText = lastResultText;
@@ -60,6 +65,7 @@ class _KeyGenState extends State<Keygen> {
 
   void copyResultText() {
     String key = Generator.getKey(log);
+    LogItemsCollection result = Generator.applyKey('HELLO-WORLD', key);
     print('');
   }
 

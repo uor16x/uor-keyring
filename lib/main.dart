@@ -11,6 +11,7 @@ Future testWindowFunctions() async {
     await DesktopWindow.setMinWindowSize(Size(width, height));
     await DesktopWindow.setMaxWindowSize(Size(width, height));
   }
+  
 }
 
 Future<void> main() async {

@@ -1,8 +1,8 @@
 import 'dart:convert';
-
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/shared/log_items_collection.dart';
 import 'package:uor_keyring/shared/ordered_string_item.dart';
+import 'package:uor_keyring/transform/substr.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 
 class Generator {
@@ -13,7 +13,7 @@ class Generator {
   static String getKey(LogItemsCollection log) {
     return log.items
         .where((item) => item.type != TransformAction.none)
-        .map((item) => item.toString())
+        .map((item) => encodeItem(item))
         .join(_itemSeparator);
   }
 
@@ -43,9 +43,20 @@ class Generator {
     ].join(_blockSeparator);
   }
 
-  static LogItemsCollection getLog(String key) {
+  static LogItemsCollection applyKey(String input, String key) {
     LogItemsCollection log = LogItemsCollection();
-    key.split(_itemSeparator).forEach((item) {});
+    log.add(
+      TransformAction.none,
+      OrderedStringItem(0, '-'),
+      [],
+      0,
+      input,
+    );
+    key.split(_itemSeparator).forEach((item) {
+      print(item);
+      // TODO: transform item
+      // log.add(type, input, args, inputIndex, output)
+    });
     return log;
   }
 }
