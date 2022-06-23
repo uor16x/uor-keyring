@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uor_keyring/extensions.dart';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/shared/ordered_string_item.dart';
-import 'package:uor_keyring/transform/attach.dart';
+import 'package:uor_keyring/transform/attach2.dart';
 import 'package:uor_keyring/widgets/keygen/actions/select_input.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';

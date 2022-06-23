@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/shared/log_items_collection.dart';
 import 'package:uor_keyring/shared/ordered_string_item.dart';
-import 'package:uor_keyring/transform/substr.dart';
+import 'package:uor_keyring/transform/substr2.dart';
 import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 
 class Generator {
@@ -30,6 +30,9 @@ class Generator {
           }
           if (arg is int) {
             return 'i_$arg';
+          }
+          if (arg is bool) {
+            return 'b_$arg';
           }
           return 's_${_toBase64(arg)}';
         })
