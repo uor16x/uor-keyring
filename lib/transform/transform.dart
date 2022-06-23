@@ -21,11 +21,13 @@ abstract class Transformable {
   final TransformActionType key = TransformActionType.none;
   final OrderedStringItem input = OrderedStringItem(0, '');
   final List args = [];
-  static Map<TransformActionType, Type> keyTypes = {
-    TransformActionType.none: NoneTransform,
-    TransformActionType.attach: AttachTransform,
-    TransformActionType.concat: ConcatTransform,
-    TransformActionType.substr: SubstrTransform,
+  static Map<TransformActionType,
+      Transformable Function(OrderedStringItem input, List args)> keyTypes = {
+    TransformActionType.none: (OrderedStringItem input, List args) =>
+        NoneTransform(input.value),
+    TransformActionType.attach: AttachTransform.new,
+    TransformActionType.concat: ConcatTransform.new,
+    TransformActionType.substr: SubstrTransform.new,
   };
   String transform();
 }

@@ -1,5 +1,5 @@
+import 'package:collection/collection.dart';
 import 'package:uor_keyring/shared/action_result.dart';
-import 'package:uor_keyring/shared/ordered_string_item.dart';
 import 'package:uor_keyring/transform/transform.dart';
 
 class LogItemsCollection {
@@ -14,5 +14,9 @@ class LogItemsCollection {
     );
     items.add(item);
     return item;
+  }
+
+  ActionLogItem? getByOutputIndex(int index) {
+    return items.firstWhereOrNull((item) => item.outputIndex == index);
   }
 }

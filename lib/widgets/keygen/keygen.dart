@@ -49,8 +49,10 @@ class _KeyGenState extends State<Keygen> {
 
   void copyResultText() {
     String key = Generator.getKey(log);
-    LogItemsCollection result = Generator.applyKey('HELLO-WORLD', key);
-    print('');
+    LogItemsCollection result = Generator.applyKey('my-email-1', key);
+    result.items.forEach((item) {
+      print(item.action.transform());
+    });
   }
 
   void copyResultKey() {}

@@ -13,7 +13,7 @@ class SubstrTransform implements Transformable {
   @override
   final TransformActionType key = TransformActionType.substr;
 
-  SubstrTransform(this.input, List args) {
+  SubstrTransform(this.input, this.args) {
     if (args.length != 2) {
       throw ArgumentError('SubstrTransform expects 2 arguments');
     }

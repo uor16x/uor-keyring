@@ -17,14 +17,14 @@ class ConcatTransform implements Transformable {
     if (args.length != 2) {
       throw ArgumentError('ConcatTransform expects 2 arguments');
     }
-    if (args[0].runtimeType != String) {
+    if (args[0].runtimeType != OrderedStringItem) {
       throw ArgumentError(
-          'ConcatTransform expects first argument(s2) to be a string');
+          'ConcatTransform expects first argument(s2) to be a OrderedStringItem');
     }
     s2 = args[0];
-    if (args[1].runtimeType != bool) {
+    if (args[1].runtimeType != String) {
       throw ArgumentError(
-          'ConcatTransform expects second argument(separator) to be a bool');
+          'ConcatTransform expects second argument(separator) to be a String');
     }
     separator = args[1];
   }
