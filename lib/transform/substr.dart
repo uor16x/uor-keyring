@@ -5,7 +5,8 @@ class SubstrTransform implements Transformable {
   late final int from;
   late final int to;
 
-  static const key = 'substr';
+  @override
+  final TransformActionType key = TransformActionType.substr;
 
   SubstrTransform(this.input, List args) {
     if (args.length != 2) {

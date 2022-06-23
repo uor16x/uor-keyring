@@ -5,7 +5,8 @@ class ConcatTransform implements Transformable {
   late final String s2;
   late final String separator;
 
-  static const key = 'concat';
+  @override
+  final TransformActionType key = TransformActionType.concat;
 
   ConcatTransform(this.input, List args) {
     if (args.length != 2) {

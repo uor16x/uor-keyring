@@ -5,7 +5,8 @@ class AttachTransform implements Transformable {
   late final String attachment;
   late final bool after;
 
-  static const key = 'attach';
+  @override
+  final TransformActionType key = TransformActionType.attach;
 
   AttachTransform(this.input, List args) {
     if (args.length != 2) {

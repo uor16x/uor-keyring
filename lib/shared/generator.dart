@@ -40,7 +40,7 @@ class Generator {
         .join(_argSeparator);
     return [
       item.outputIndex,
-      item.type.index,
+      item.type.key,
       item.inputIndex,
       stringArgs,
     ].join(_blockSeparator);
