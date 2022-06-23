@@ -1,32 +1,37 @@
+import 'package:uor_keyring/shared/ordered_string_item.dart';
 import 'package:uor_keyring/transform/transform.dart';
 
 class ConcatTransform implements Transformable {
-  final String input;
-  late final String s2;
+  @override
+  final OrderedStringItem input;
+  @override
+  late final List args;
+
+  late final OrderedStringItem s2;
   late final String separator;
 
   @override
   final TransformActionType key = TransformActionType.concat;
 
-  ConcatTransform(this.input, List args) {
+  ConcatTransform(this.input, this.args) {
     if (args.length != 2) {
-      throw ArgumentError('AttachTransform expects 2 arguments');
+      throw ArgumentError('ConcatTransform expects 2 arguments');
     }
     if (args[0].runtimeType != String) {
       throw ArgumentError(
-          'AttachTransform expects first argument(s2) to be a string');
+          'ConcatTransform expects first argument(s2) to be a string');
     }
     s2 = args[0];
     if (args[1].runtimeType != bool) {
       throw ArgumentError(
-          'AttachTransform expects second argument(separator) to be a bool');
+          'ConcatTransform expects second argument(separator) to be a bool');
     }
     separator = args[1];
   }
 
   @override
   String transform() {
-    return _concat(input, s2, separator);
+    return _concat(input.value, s2.value, separator);
   }
 
   String _concat(String s1, String s2, [String separator = '']) {

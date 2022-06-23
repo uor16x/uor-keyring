@@ -159,16 +159,10 @@ class _AttachState extends State<Attach> {
     try {
       List args = [attachment, getAttachPositionString(pos)];
       Transformable action = AttachTransform(
-        item!.value,
-        args,
-      );
-      widget.onTransform(
-        action,
         item!,
         args,
-        item!.index,
-        action.transform(),
       );
+      widget.onTransform(action);
     } catch (err) {
       // TODO: err catching
       print(err);

@@ -1,3 +1,5 @@
+import 'package:uor_keyring/shared/ordered_string_item.dart';
+
 enum TransformActionType {
   none,
   substr,
@@ -13,5 +15,7 @@ extension ParseToString on TransformActionType {
 
 abstract class Transformable {
   final TransformActionType key = TransformActionType.none;
+  final OrderedStringItem input = OrderedStringItem(0, '');
+  final List args = [];
   String transform();
 }

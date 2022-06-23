@@ -23,9 +23,5 @@ extension AdvancedIter<T> on List<T> {
 }
 
 typedef ProcessActionMethod = void Function(
-  Transformable type,
-  OrderedStringItem input,
-  List args,
-  int inputIndex,
-  String output,
+  Transformable action,
 );

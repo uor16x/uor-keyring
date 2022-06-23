@@ -69,16 +69,10 @@ class _ConcatState extends State<Concat> {
     try {
       List args = [string2, separator];
       Transformable action = ConcatTransform(
-        string1!.value,
-        args,
-      );
-      widget.onTransform(
-        action,
         string1!,
         args,
-        string1!.index,
-        action.transform(),
       );
+      widget.onTransform(action);
     } catch (err) {
       // TODO: err catching
       print(err);

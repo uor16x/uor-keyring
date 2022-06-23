@@ -1,14 +1,19 @@
+import 'package:uor_keyring/shared/ordered_string_item.dart';
 import 'package:uor_keyring/transform/transform.dart';
 
 class AttachTransform implements Transformable {
-  final String input;
+  @override
+  final OrderedStringItem input;
+  @override
+  late final List args;
+
   late final String attachment;
   late final bool after;
 
   @override
   final TransformActionType key = TransformActionType.attach;
 
-  AttachTransform(this.input, List args) {
+  AttachTransform(this.input, this.args) {
     if (args.length != 2) {
       throw ArgumentError('AttachTransform expects 2 arguments');
     }
@@ -26,7 +31,7 @@ class AttachTransform implements Transformable {
 
   @override
   String transform() {
-    return _attach(input, attachment, after);
+    return _attach(input.value, attachment, after);
   }
 
   String _attach(String input, String attachment, bool after) {
