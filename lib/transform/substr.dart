@@ -1,7 +1,12 @@
+import 'package:uor_keyring/shared/ordered_string_item.dart';
 import 'package:uor_keyring/transform/transform.dart';
 
 class SubstrTransform implements Transformable {
-  final String input;
+  @override
+  final OrderedStringItem input;
+  @override
+  late final List args;
+
   late final int from;
   late final int to;
 
@@ -10,23 +15,23 @@ class SubstrTransform implements Transformable {
 
   SubstrTransform(this.input, List args) {
     if (args.length != 2) {
-      throw ArgumentError('AttachTransform expects 2 arguments');
+      throw ArgumentError('SubstrTransform expects 2 arguments');
     }
     if (args[0].runtimeType != int) {
       throw ArgumentError(
-          'AttachTransform expects first argument(s2) to be a string');
+          'SubstrTransform expects first argument(from) to be a string');
     }
     from = args[0];
     if (args[1].runtimeType != int) {
       throw ArgumentError(
-          'AttachTransform expects second argument(separator) to be a bool');
+          'SubstrTransform expects second argument(to) to be a bool');
     }
     to = args[1];
   }
 
   @override
   String transform() {
-    return _substr(input, from, to);
+    return _substr(input.value, from, to);
   }
 
   String _substr(String input, int from, int to) {

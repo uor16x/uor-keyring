@@ -97,14 +97,8 @@ class _SubstrState extends State<Substr> {
   void transform() {
     try {
       List args = [from!, to!];
-      Transformable action = SubstrTransform(selectedValue!.value, args);
-      widget.onTransform(
-        action,
-        selectedValue!,
-        args,
-        selectedValue!.index,
-        action.transform(),
-      );
+      Transformable action = SubstrTransform(selectedValue!, args);
+      widget.onTransform(action);
     } catch (err) {
       print(err);
     }
