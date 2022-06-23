@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:uor_keyring/extensions.dart';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/shared/ordered_string_item.dart';
+import 'package:uor_keyring/transform/transform.dart';
 import 'package:uor_keyring/widgets/keygen/actions/attach.dart';
 import 'package:uor_keyring/widgets/keygen/actions/concat.dart';
 import 'package:uor_keyring/widgets/keygen/actions/substr.dart';
-import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class AddAction extends StatefulWidget {
@@ -32,7 +32,7 @@ class _ActionPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<DropdownMenuItem<String>> items = TransformAction.values.map(
+    List<DropdownMenuItem<String>> items = TransformActionType.values.map(
       (item) {
         return DropdownMenuItem<String>(
           value: item.asString(),
@@ -59,7 +59,7 @@ class _ActionPicker extends StatelessWidget {
 
 class _AddActionState extends State<AddAction> {
   bool addMode = false;
-  String actionType = TransformAction.none.asString();
+  String actionType = TransformActionType.none.asString();
 
   setMode(bool newMode) {
     setState(() {
@@ -76,12 +76,12 @@ class _AddActionState extends State<AddAction> {
   reset() {
     setState(() {
       addMode = false;
-      actionType = TransformAction.none.asString();
+      actionType = TransformActionType.none.asString();
     });
   }
 
   onTransform(
-    TransformAction type,
+    Transformable type,
     OrderedStringItem input,
     List args,
     int inputIndex,
@@ -105,11 +105,11 @@ class _AddActionState extends State<AddAction> {
           Styles.emptySpace(10),
 
           // specific transformations block
-          if (actionType == TransformAction.substr.asString())
+          if (actionType == TransformActionType.substr.asString())
             Substr(inputs: widget.inputs, onTransform: onTransform),
-          if (actionType == TransformAction.concat.asString())
+          if (actionType == TransformActionType.concat.asString())
             Concat(inputs: widget.inputs, onTransform: onTransform),
-          if (actionType == TransformAction.attach.asString())
+          if (actionType == TransformActionType.attach.asString())
             Attach(inputs: widget.inputs, onTransform: onTransform),
           // ---
 

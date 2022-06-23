@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/shared/log_items_collection.dart';
 import 'package:uor_keyring/shared/ordered_string_item.dart';
-import 'package:uor_keyring/transform/substr2.dart';
-import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
+import 'package:uor_keyring/transform/none.dart';
+import 'package:uor_keyring/transform/transform.dart';
 
 class Generator {
   static const String _itemSeparator = ';-;';
@@ -12,7 +12,7 @@ class Generator {
 
   static String getKey(LogItemsCollection log) {
     return log.items
-        .where((item) => item.type != TransformAction.none)
+        .where((item) => item.type.key != TransformActionType.none)
         .map((item) => encodeItem(item))
         .join(_itemSeparator);
   }
@@ -49,7 +49,7 @@ class Generator {
   static LogItemsCollection applyKey(String input, String key) {
     LogItemsCollection log = LogItemsCollection();
     log.add(
-      TransformAction.none,
+      NoneTransform(input),
       OrderedStringItem(0, '-'),
       [],
       0,

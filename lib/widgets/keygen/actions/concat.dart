@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/extensions.dart';
-import 'package:uor_keyring/transform/concat2.dart';
+import 'package:uor_keyring/transform/concat.dart';
 import 'package:uor_keyring/shared/action_result.dart';
+import 'package:uor_keyring/transform/transform.dart';
 import 'package:uor_keyring/widgets/keygen/actions/select_input.dart';
-import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 import 'package:uor_keyring/shared/ordered_string_item.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
 
@@ -67,13 +67,17 @@ class _ConcatState extends State<Concat> {
 
   void transform() {
     try {
-      String result = concat(string1!.value, string2!.value, separator);
+      List args = [string2, separator];
+      Transformable action = ConcatTransform(
+        string1!.value,
+        args,
+      );
       widget.onTransform(
-        TransformAction.concat,
+        action,
         string1!,
-        [string2, separator],
+        args,
         string1!.index,
-        result,
+        action.transform(),
       );
     } catch (err) {
       // TODO: err catching

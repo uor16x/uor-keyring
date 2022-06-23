@@ -1,6 +1,5 @@
 import 'package:uor_keyring/shared/ordered_string_item.dart';
-
-import 'widgets/keygen/actions/transform_action.dart';
+import 'package:uor_keyring/transform/transform.dart';
 
 extension AdvancedIter<T> on List<T> {
   List<V> mapWithIndex<V>(V Function(T item, int index) callback) {
@@ -24,7 +23,7 @@ extension AdvancedIter<T> on List<T> {
 }
 
 typedef ProcessActionMethod = void Function(
-  TransformAction type,
+  Transformable type,
   OrderedStringItem input,
   List args,
   int inputIndex,

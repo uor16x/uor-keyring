@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/shared/action_result.dart';
-import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
+import 'package:uor_keyring/transform/transform.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class _ItemInfoTitle extends StatelessWidget {
@@ -19,7 +19,7 @@ class _ItemInfoTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          item.type.asString(),
+          item.type.key.asString(),
           style: const TextStyle(fontSize: 24),
         ),
         Text('@ ${item.input}'),

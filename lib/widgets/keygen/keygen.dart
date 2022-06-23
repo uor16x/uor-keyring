@@ -3,7 +3,8 @@ import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/shared/generator.dart';
 import 'package:uor_keyring/shared/log_items_collection.dart';
 import 'package:uor_keyring/shared/ordered_string_item.dart';
-import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
+import 'package:uor_keyring/transform/none.dart';
+import 'package:uor_keyring/transform/transform.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/log_block.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/result_block.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
@@ -25,7 +26,7 @@ class _KeyGenState extends State<Keygen> {
     lastResultText = initialResultText;
     log = LogItemsCollection();
     log.add(
-      TransformAction.none,
+      NoneTransform(initialResultText),
       OrderedStringItem(0, '-'),
       [],
       0,
@@ -44,7 +45,7 @@ class _KeyGenState extends State<Keygen> {
   }
 
   void addAction(
-    TransformAction type,
+    Transformable type,
     OrderedStringItem input,
     List args,
     int inputIndex,

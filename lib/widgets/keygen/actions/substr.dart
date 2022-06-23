@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/extensions.dart';
-import 'package:uor_keyring/transform/substr2.dart';
+import 'package:uor_keyring/transform/substr.dart';
 import 'package:uor_keyring/shared/action_result.dart';
+import 'package:uor_keyring/transform/transform.dart';
 import 'package:uor_keyring/widgets/keygen/actions/select_input.dart';
-import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
 import 'package:uor_keyring/shared/ordered_string_item.dart';
 import 'package:uor_keyring/widgets/shared/row_input.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
@@ -96,13 +96,14 @@ class _SubstrState extends State<Substr> {
 
   void transform() {
     try {
-      String result = substr(selectedValue!.value, from!, to!);
+      List args = [from!, to!];
+      Transformable action = SubstrTransform(selectedValue!.value, args);
       widget.onTransform(
-        TransformAction.substr,
+        action,
         selectedValue!,
-        [from!, to!],
+        args,
         selectedValue!.index,
-        result,
+        action.transform(),
       );
     } catch (err) {
       print(err);

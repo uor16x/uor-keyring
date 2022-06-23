@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/extensions.dart';
 import 'package:uor_keyring/shared/action_result.dart';
-import 'package:uor_keyring/widgets/keygen/actions/transform_action.dart';
+import 'package:uor_keyring/transform/transform.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/add_action.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/item_info.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
@@ -78,7 +78,7 @@ class LogBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     List<_LogItem> items = logItems
         .map((item) => _LogItem(item))
-        .where((element) => element.item.type != TransformAction.none)
+        .where((element) => element.item.type.key != TransformActionType.none)
         .toList();
     return ListView.builder(
       padding: Styles.padding(),
