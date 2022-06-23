@@ -61,14 +61,12 @@ class _LogItem extends StatelessWidget {
 }
 
 class LogBlock extends StatelessWidget {
-  final String currentValue;
   final List<ActionLogItem> logItems;
   final ProcessActionMethod newActionApplied;
   final void Function() reset;
 
   const LogBlock({
     super.key,
-    required this.currentValue,
     required this.logItems,
     required this.newActionApplied,
     required this.reset,

@@ -19,4 +19,8 @@ class LogItemsCollection {
   ActionLogItem? getByOutputIndex(int index) {
     return items.firstWhereOrNull((item) => item.outputIndex == index);
   }
+
+  String getResult() {
+    return items.last.output;
+  }
 }

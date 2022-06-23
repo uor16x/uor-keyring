@@ -18,18 +18,15 @@ class Keygen extends StatefulWidget {
 }
 
 class _KeyGenState extends State<Keygen> {
-  late String lastResultText;
   late LogItemsCollection log;
 
   void reset({initial = false}) {
     const String initialResultText = 'my-email-1';
-    lastResultText = initialResultText;
     log = LogItemsCollection();
     Transformable action = NoneTransform(initialResultText);
     log.add(action);
     if (!initial) {
       setState(() {
-        lastResultText = lastResultText;
         log = log;
       });
     }
@@ -43,16 +40,11 @@ class _KeyGenState extends State<Keygen> {
     setState(() {
       log.add(action);
       log = log;
-      lastResultText = action.transform();
     });
   }
 
   void copyResultText() {
     String key = Generator.getKey(log);
-    LogItemsCollection result = Generator.applyKey('my-email-1', key);
-    result.items.forEach((item) {
-      print(item.action.transform());
-    });
   }
 
   void copyResultKey() {}
@@ -66,13 +58,12 @@ class _KeyGenState extends State<Keygen> {
           const TabHeader("Generate new key"),
           Styles.emptySpace(15),
           ResultBlock(
-            result: lastResultText,
+            result: log.getResult(),
             copy: copyResultText,
           ),
           Styles.emptySpace(15),
           Expanded(
             child: LogBlock(
-              currentValue: lastResultText,
               logItems: log.items,
               newActionApplied: addAction,
               reset: reset,
