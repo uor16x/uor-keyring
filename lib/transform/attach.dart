@@ -22,11 +22,11 @@ class AttachTransform implements Transformable {
           'AttachTransform expects first argument(attachment) to be a string');
     }
     attachment = args[0];
-    if (args[1].runtimeType != bool) {
+    if (args[1].runtimeType != String) {
       throw ArgumentError(
-          'AttachTransform expects second argument(after) to be a bool');
+          'AttachTransform expects second argument(after) to be a String');
     }
-    after = args[1];
+    after = args[1] == 'after';
   }
 
   @override
