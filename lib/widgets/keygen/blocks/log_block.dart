@@ -78,7 +78,7 @@ class LogBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     List<_LogItem> items = logItems
         .map((item) => _LogItem(item))
-        .where((element) => element.item.type.key != TransformActionType.none)
+        .where((element) => element.item.action.key != TransformActionType.none)
         .toList();
     return ListView.builder(
       padding: Styles.padding(),

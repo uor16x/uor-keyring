@@ -3,14 +3,17 @@ import 'package:uor_keyring/transform/transform.dart';
 
 class NoneTransform implements Transformable {
   @override
-  final OrderedStringItem input;
+  late OrderedStringItem input;
   @override
-  late final List args = [];
+  late List args;
 
   @override
   final TransformActionType key = TransformActionType.none;
 
-  NoneTransform(this.input);
+  NoneTransform(String initialInput) {
+    input = OrderedStringItem(0, initialInput);
+    args = [];
+  }
 
   @override
   String transform() {

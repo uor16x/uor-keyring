@@ -25,13 +25,8 @@ class _KeyGenState extends State<Keygen> {
     const String initialResultText = 'my-email-1';
     lastResultText = initialResultText;
     log = LogItemsCollection();
-    log.add(
-      NoneTransform(initialResultText),
-      OrderedStringItem(0, '-'),
-      [],
-      0,
-      initialResultText,
-    );
+    Transformable action = NoneTransform(initialResultText);
+    log.add(action);
     if (!initial) {
       setState(() {
         lastResultText = lastResultText;
@@ -44,23 +39,11 @@ class _KeyGenState extends State<Keygen> {
     reset(initial: true);
   }
 
-  void addAction(
-    Transformable type,
-    OrderedStringItem input,
-    List args,
-    int inputIndex,
-    String output,
-  ) {
+  void addAction(Transformable action) {
     setState(() {
-      ActionLogItem newItem = log.add(
-        type,
-        input,
-        args,
-        inputIndex,
-        output,
-      );
+      log.add(action);
       log = log;
-      lastResultText = newItem.output;
+      lastResultText = action.transform();
     });
   }
 

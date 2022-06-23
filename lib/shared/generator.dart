@@ -12,7 +12,7 @@ class Generator {
 
   static String getKey(LogItemsCollection log) {
     return log.items
-        .where((item) => item.type.key != TransformActionType.none)
+        .where((item) => item.action.key != TransformActionType.none)
         .map((item) => encodeItem(item))
         .join(_itemSeparator);
   }
@@ -23,7 +23,7 @@ class Generator {
   }
 
   static String encodeItem(ActionLogItem item) {
-    String stringArgs = item.args
+    String stringArgs = item.action.args
         .map((arg) {
           if (arg is OrderedStringItem) {
             return 'osi_${arg.index}';
@@ -40,21 +40,15 @@ class Generator {
         .join(_argSeparator);
     return [
       item.outputIndex,
-      item.type.key,
-      item.inputIndex,
+      item.action.key,
+      item.action.input.index,
       stringArgs,
     ].join(_blockSeparator);
   }
 
   static LogItemsCollection applyKey(String input, String key) {
     LogItemsCollection log = LogItemsCollection();
-    log.add(
-      NoneTransform(input),
-      OrderedStringItem(0, '-'),
-      [],
-      0,
-      input,
-    );
+    log.add(NoneTransform(input));
     key.split(_itemSeparator).forEach((item) {
       print(item);
       // TODO: transform item

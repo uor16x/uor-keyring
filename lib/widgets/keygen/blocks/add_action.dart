@@ -80,15 +80,9 @@ class _AddActionState extends State<AddAction> {
     });
   }
 
-  onTransform(
-    Transformable type,
-    OrderedStringItem input,
-    List args,
-    int inputIndex,
-    String output,
-  ) {
+  onTransform(Transformable action) {
     reset();
-    widget.apply(type, input, args, inputIndex, output);
+    widget.apply(action);
   }
 
   @override

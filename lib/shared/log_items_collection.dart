@@ -7,19 +7,9 @@ class LogItemsCollection {
 
   LogItemsCollection();
 
-  ActionLogItem add(
-    Transformable type,
-    OrderedStringItem input,
-    List args,
-    int inputIndex,
-    String output,
-  ) {
+  ActionLogItem add(Transformable type) {
     ActionLogItem item = ActionLogItem(
       type,
-      input,
-      args,
-      inputIndex,
-      output,
       items.length,
     );
     items.add(item);

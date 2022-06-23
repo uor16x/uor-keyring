@@ -10,7 +10,7 @@ class _ItemInfoTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> args = item.args
+    List<String> args = item.action.args
         .map((arg) => arg.toString())
         .map((arg) => arg.isNotEmpty ? '>> $arg' : '')
         .toList();
@@ -19,10 +19,10 @@ class _ItemInfoTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          item.type.key.asString(),
+          item.action.key.asString(),
           style: const TextStyle(fontSize: 24),
         ),
-        Text('@ ${item.input}'),
+        Text('@ ${item.action.input}'),
         Text(args.join('\n'))
       ],
     );
