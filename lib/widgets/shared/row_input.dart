@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class RowInput extends StatelessWidget {
   final String label;

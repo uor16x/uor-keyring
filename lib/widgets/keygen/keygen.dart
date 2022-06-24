@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/shared/generator.dart';
 import 'package:uor_keyring/shared/log_items_collection.dart';
-import 'package:uor_keyring/shared/ordered_string_item.dart';
 import 'package:uor_keyring/transform/none.dart';
 import 'package:uor_keyring/transform/transform.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/log_block.dart';
