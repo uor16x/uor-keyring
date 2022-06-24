@@ -81,7 +81,7 @@ class LogBlock extends StatelessWidget {
     if (items.isNotEmpty) {
       return ListView.builder(
         padding: Styles.padding(),
-        itemCount: items.length + 1,
+        itemCount: items.length,
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         itemBuilder: (context, index) {

@@ -3,6 +3,7 @@ import 'package:uor_keyring/shared/generator.dart';
 import 'package:uor_keyring/shared/log_items_collection.dart';
 import 'package:uor_keyring/transform/none.dart';
 import 'package:uor_keyring/transform/transform.dart';
+import 'package:uor_keyring/widgets/keygen/blocks/add_action.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/log_block.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/result_block.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
@@ -37,6 +38,7 @@ class _KeyGenState extends State<Keygen> {
 
   void addAction(Transformable action) {
     setState(() {
+      showAddAction = false;
       log.add(action);
       log = log;
     });
@@ -52,23 +54,57 @@ class _KeyGenState extends State<Keygen> {
     });
   }
 
+  void cancelAddAction() {
+    setState(() {
+      showAddAction = false;
+    });
+  }
+
   void copyResultKey() {}
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> buttons = [];
+    if (log.items.length > 1) {
+      buttons.add(
+        FloatingActionButton(
+          backgroundColor: ThemeData.light().backgroundColor,
+          onPressed: toggleAddAction,
+          child: const Icon(Icons.restart_alt),
+        ),
+      );
+    }
+    if (!showAddAction) {
+      buttons.add(const SizedBox(height: 15));
+      buttons.add(
+        FloatingActionButton(
+          backgroundColor: ThemeData.light().backgroundColor,
+          onPressed: toggleAddAction,
+          child: const Icon(Icons.post_add),
+        ),
+      );
+    }
+
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: toggleAddAction,
-        child: showAddAction
-            ? const Icon(Icons.close)
-            : const Icon(Icons.post_add),
+      resizeToAvoidBottomInset: false,
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: buttons,
       ),
       body: Container(
         padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             const TabHeader("Generate new key"),
-            Styles.emptySpace(15),
+            Styles.emptySpace(),
+            if (showAddAction) ...[
+              AddAction(
+                inputs: log.items,
+                apply: addAction,
+                onCancel: cancelAddAction,
+              ),
+              Styles.emptySpace(),
+            ],
             Expanded(
               child: LogBlock(
                 logItems: log.items,

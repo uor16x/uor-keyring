@@ -10,13 +10,13 @@ import 'package:uor_keyring/widgets/shared/styles.dart';
 class AddAction extends StatefulWidget {
   final List<ActionLogItem> inputs;
   final ProcessActionMethod apply;
-  final void Function() reset;
+  final void Function() onCancel;
 
   const AddAction({
     super.key,
     required this.inputs,
     required this.apply,
-    required this.reset,
+    required this.onCancel,
   });
 
   @override
@@ -57,14 +57,7 @@ class _ActionPicker extends StatelessWidget {
 }
 
 class _AddActionState extends State<AddAction> {
-  bool addMode = false;
   String actionType = TransformActionType.none.asString();
-
-  setMode(bool newMode) {
-    setState(() {
-      addMode = newMode;
-    });
-  }
 
   setActionType(String type) {
     setState(() {
@@ -72,62 +65,55 @@ class _AddActionState extends State<AddAction> {
     });
   }
 
-  reset() {
-    setState(() {
-      addMode = false;
-      actionType = TransformActionType.none.asString();
-    });
-  }
-
   onTransform(Transformable action) {
-    reset();
     widget.apply(action);
   }
 
   @override
   Widget build(BuildContext context) {
     Widget addAction;
-    if (addMode) {
-      Widget actionPicker = _ActionPicker(
-        selectedType: actionType,
-        onPick: setActionType,
-      );
-      addAction = Column(
-        children: [
-          actionPicker,
-          Styles.emptySpace(10),
+    Widget actionPicker = _ActionPicker(
+      selectedType: actionType,
+      onPick: setActionType,
+    );
+    addAction = Column(
+      children: [
+        actionPicker,
+        Styles.emptySpace(10),
 
-          // specific transformations block
-          if (actionType == TransformActionType.substr.asString())
-            Substr(inputs: widget.inputs, onTransform: onTransform),
-          if (actionType == TransformActionType.concat.asString())
-            Concat(inputs: widget.inputs, onTransform: onTransform),
-          if (actionType == TransformActionType.attach.asString())
-            Attach(inputs: widget.inputs, onTransform: onTransform),
-          // ---
+        // specific transformations block
+        if (actionType == TransformActionType.substr.asString())
+          Substr(inputs: widget.inputs, onTransform: onTransform),
+        if (actionType == TransformActionType.concat.asString())
+          Concat(inputs: widget.inputs, onTransform: onTransform),
+        if (actionType == TransformActionType.attach.asString())
+          Attach(inputs: widget.inputs, onTransform: onTransform),
+        // ---
 
-          Styles.emptySpace(10),
-          TextButton(
-            onPressed: () => setMode(false),
-            child: const Text('Cancel'),
-          ),
-        ],
-      );
-    } else {
-      addAction = Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextButton(
-            onPressed: () => setMode(true),
-            child: const Text('Add transformation'),
-          ),
-          TextButton(
-            onPressed: widget.reset,
-            child: const Text('Reset'),
-          ),
-        ],
-      );
-    }
+        Styles.emptySpace(10),
+        TextButton(
+          onPressed: widget.onCancel,
+          child: const Text('Cancel'),
+        ),
+      ],
+    );
+    // if (addMode) {
+
+    // } else {
+    //   addAction = Row(
+    //     mainAxisAlignment: MainAxisAlignment.center,
+    //     children: [
+    //       TextButton(
+    //         onPressed: () => setMode(true),
+    //         child: const Text('Add transformation'),
+    //       ),
+    //       TextButton(
+    //         onPressed: widget.reset,
+    //         child: const Text('Reset'),
+    //       ),
+    //     ],
+    //   );
+    // }
 
     return Center(child: addAction);
   }
