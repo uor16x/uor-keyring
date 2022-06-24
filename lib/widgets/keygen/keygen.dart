@@ -17,6 +17,7 @@ class Keygen extends StatefulWidget {
 
 class _KeyGenState extends State<Keygen> {
   late LogItemsCollection log;
+  bool showAddAction = false;
 
   void reset({initial = false}) {
     const String initialResultText = 'my-email-1';
@@ -45,29 +46,38 @@ class _KeyGenState extends State<Keygen> {
     String key = Generator.getKey(log);
   }
 
+  void toggleAddAction() {
+    setState(() {
+      showAddAction = !showAddAction;
+    });
+  }
+
   void copyResultKey() {}
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        children: [
-          const TabHeader("Generate new key"),
-          Styles.emptySpace(15),
-          ResultBlock(
-            result: log.getResult(),
-            copy: copyResultText,
-          ),
-          Styles.emptySpace(15),
-          Expanded(
-            child: LogBlock(
-              logItems: log.items,
-              newActionApplied: addAction,
-              reset: reset,
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: toggleAddAction,
+        child: showAddAction
+            ? const Icon(Icons.close)
+            : const Icon(Icons.post_add),
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          children: [
+            const TabHeader("Generate new key"),
+            Styles.emptySpace(15),
+            Expanded(
+              child: LogBlock(
+                logItems: log.items,
+                newActionApplied: addAction,
+                reset: reset,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

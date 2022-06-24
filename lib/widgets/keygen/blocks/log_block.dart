@@ -78,23 +78,28 @@ class LogBlock extends StatelessWidget {
         .map((item) => _LogItem(item))
         .where((element) => element.item.action.key != TransformActionType.none)
         .toList();
-    return ListView.builder(
-      padding: Styles.padding(),
-      itemCount: items.length + 1,
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        return index == 0
-            ? Container(
-                margin: const EdgeInsets.only(bottom: 10),
-                child: AddAction(
-                  inputs: logItems,
-                  apply: newActionApplied,
-                  reset: reset,
-                ),
-              )
-            : Card(child: items[index - 1]);
-      },
-    );
+    if (items.isNotEmpty) {
+      return ListView.builder(
+        padding: Styles.padding(),
+        itemCount: items.length + 1,
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return Card(child: items[index]);
+          // index == 0
+          //     ? Container(
+          //         margin: const EdgeInsets.only(bottom: 10),
+          //         child: AddAction(
+          //           inputs: logItems,
+          //           apply: newActionApplied,
+          //           reset: reset,
+          //         ),
+          //       )
+          //     : Card(child: items[index - 1]);
+        },
+      );
+    } else {
+      return Container();
+    }
   }
 }

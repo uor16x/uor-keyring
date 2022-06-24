@@ -7,7 +7,7 @@ Future testWindowFunctions() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (defaultTargetPlatform == TargetPlatform.windows && !kIsWeb) {
     double width = 550;
-    double height = 700;
+    double height = 650;
     await DesktopWindow.setMinWindowSize(Size(width, height));
     await DesktopWindow.setMaxWindowSize(Size(width, height));
   }
