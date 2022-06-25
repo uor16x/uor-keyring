@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uor_keyring/extensions.dart';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/transform/transform.dart';
-import 'package:uor_keyring/widgets/keygen/blocks/add_action.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/item_info.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
 
@@ -62,15 +60,8 @@ class _LogItem extends StatelessWidget {
 
 class LogBlock extends StatelessWidget {
   final List<ActionLogItem> logItems;
-  final ProcessActionMethod newActionApplied;
-  final void Function() reset;
 
-  const LogBlock({
-    super.key,
-    required this.logItems,
-    required this.newActionApplied,
-    required this.reset,
-  });
+  const LogBlock(this.logItems, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -80,26 +71,13 @@ class LogBlock extends StatelessWidget {
         .toList();
     if (items.isNotEmpty) {
       return ListView.builder(
-        padding: Styles.padding(),
-        itemCount: items.length,
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return Card(child: items[index]);
-          // index == 0
-          //     ? Container(
-          //         margin: const EdgeInsets.only(bottom: 10),
-          //         child: AddAction(
-          //           inputs: logItems,
-          //           apply: newActionApplied,
-          //           reset: reset,
-          //         ),
-          //       )
-          //     : Card(child: items[index - 1]);
-        },
-      );
+          padding: Styles.padding(),
+          itemCount: items.length,
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          itemBuilder: (context, index) => Card(child: items[index]));
     } else {
-      return Container();
+      return const SizedBox.shrink();
     }
   }
 }

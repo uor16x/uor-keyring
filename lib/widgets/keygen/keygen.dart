@@ -17,7 +17,6 @@ class Keygen extends StatefulWidget {
 
 class _KeyGenState extends State<Keygen> {
   late LogItemsCollection log;
-  bool showAddActionButton = false;
 
   void reset({initial = false}) {
     const String initialResultText = 'my-email-1';
@@ -36,6 +35,7 @@ class _KeyGenState extends State<Keygen> {
   }
 
   void addAction(BuildContext context, Transformable action) {
+    Navigator.of(context).pop(); // close modal
     setState(() {
       log.add(action);
       log = log;
@@ -46,14 +46,7 @@ class _KeyGenState extends State<Keygen> {
     String key = Generator.getKey(log);
   }
 
-  void setAddActionButton(bool value) {
-    setState(() {
-      showAddActionButton = value;
-    });
-  }
-
   void showAddActionModal(BuildContext context) {
-    setAddActionButton(false);
     showModalBottomSheet(
       context: context,
       builder: (context) => AddAction(
@@ -61,7 +54,7 @@ class _KeyGenState extends State<Keygen> {
         apply: (Transformable action) => addAction(context, action),
         onCancel: () => {},
       ),
-    ).whenComplete(() => setAddActionButton(true));
+    );
   }
 
   void copyResultKey() {}
@@ -78,16 +71,14 @@ class _KeyGenState extends State<Keygen> {
         ),
       );
     }
-    if (showAddActionButton) {
-      buttons.add(const SizedBox(height: 15));
-      buttons.add(
-        FloatingActionButton(
-          backgroundColor: ThemeData.light().backgroundColor,
-          onPressed: () => showAddActionModal(context),
-          child: const Icon(Icons.post_add),
-        ),
-      );
-    }
+    buttons.add(const SizedBox(height: 15));
+    buttons.add(
+      FloatingActionButton(
+        backgroundColor: ThemeData.light().backgroundColor,
+        onPressed: () => showAddActionModal(context),
+        child: const Icon(Icons.post_add),
+      ),
+    );
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -101,13 +92,7 @@ class _KeyGenState extends State<Keygen> {
           children: [
             const TabHeader("Generate new key"),
             Styles.emptySpace(),
-            Expanded(
-              child: LogBlock(
-                logItems: log.items,
-                newActionApplied: addAction,
-                reset: reset,
-              ),
-            ),
+            Expanded(child: LogBlock(log.items)),
           ],
         ),
       ),
