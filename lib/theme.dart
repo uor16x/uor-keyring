@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-const Color mainColor = Color.fromARGB(128, 40, 47, 56);
-const Color mainOverlappingColor = Color.fromRGBO(30, 35, 42, 1);
+const Color mainColor = Color.fromARGB(44, 98, 110, 124);
+const Color mainOverlappingColor = Color.fromARGB(255, 26, 30, 34);
 const Color secondaryColor = Color.fromARGB(225, 255, 255, 255);
 
 ThemeData getTheme() {
