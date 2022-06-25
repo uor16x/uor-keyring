@@ -103,9 +103,6 @@ class _AttachButton extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(left: 5),
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: Colors.white30,
-        ),
         onPressed: onClick,
         onLongPress: null,
         child: const Text(

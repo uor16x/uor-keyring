@@ -65,7 +65,6 @@ class _KeyGenState extends State<Keygen> {
     if (log.items.length > 1) {
       buttons.add(
         FloatingActionButton(
-          backgroundColor: ThemeData.light().backgroundColor,
           onPressed: () => showAddActionModal(context),
           child: const Icon(Icons.restart_alt),
         ),
@@ -74,7 +73,6 @@ class _KeyGenState extends State<Keygen> {
     buttons.add(const SizedBox(height: 15));
     buttons.add(
       FloatingActionButton(
-        backgroundColor: ThemeData.light().backgroundColor,
         onPressed: () => showAddActionModal(context),
         child: const Icon(Icons.post_add),
       ),

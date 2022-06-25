@@ -54,9 +54,6 @@ class _SubstrTransformButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        primary: Colors.white30,
-      ),
       onPressed: onClick,
       onLongPress: null,
       child: const Text(
