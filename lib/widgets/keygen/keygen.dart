@@ -5,7 +5,6 @@ import 'package:uor_keyring/transform/none.dart';
 import 'package:uor_keyring/transform/transform.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/add_action.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/log_block.dart';
-import 'package:uor_keyring/widgets/keygen/blocks/result_block.dart';
 import 'package:uor_keyring/widgets/shared/styles.dart';
 import 'package:uor_keyring/widgets/shared/tab_header.dart';
 
@@ -18,7 +17,7 @@ class Keygen extends StatefulWidget {
 
 class _KeyGenState extends State<Keygen> {
   late LogItemsCollection log;
-  bool showAddAction = false;
+  bool showAddActionButton = false;
 
   void reset({initial = false}) {
     const String initialResultText = 'my-email-1';
@@ -36,9 +35,8 @@ class _KeyGenState extends State<Keygen> {
     reset(initial: true);
   }
 
-  void addAction(Transformable action) {
+  void addAction(BuildContext context, Transformable action) {
     setState(() {
-      showAddAction = false;
       log.add(action);
       log = log;
     });
@@ -48,16 +46,22 @@ class _KeyGenState extends State<Keygen> {
     String key = Generator.getKey(log);
   }
 
-  void toggleAddAction() {
+  void setAddActionButton(bool value) {
     setState(() {
-      showAddAction = !showAddAction;
+      showAddActionButton = value;
     });
   }
 
-  void cancelAddAction() {
-    setState(() {
-      showAddAction = false;
-    });
+  void showAddActionModal(BuildContext context) {
+    setAddActionButton(false);
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => AddAction(
+        inputs: log.items,
+        apply: (Transformable action) => addAction(context, action),
+        onCancel: () => {},
+      ),
+    ).whenComplete(() => setAddActionButton(true));
   }
 
   void copyResultKey() {}
@@ -69,17 +73,17 @@ class _KeyGenState extends State<Keygen> {
       buttons.add(
         FloatingActionButton(
           backgroundColor: ThemeData.light().backgroundColor,
-          onPressed: toggleAddAction,
+          onPressed: () => showAddActionModal(context),
           child: const Icon(Icons.restart_alt),
         ),
       );
     }
-    if (!showAddAction) {
+    if (showAddActionButton) {
       buttons.add(const SizedBox(height: 15));
       buttons.add(
         FloatingActionButton(
           backgroundColor: ThemeData.light().backgroundColor,
-          onPressed: toggleAddAction,
+          onPressed: () => showAddActionModal(context),
           child: const Icon(Icons.post_add),
         ),
       );
@@ -97,14 +101,6 @@ class _KeyGenState extends State<Keygen> {
           children: [
             const TabHeader("Generate new key"),
             Styles.emptySpace(),
-            if (showAddAction) ...[
-              AddAction(
-                inputs: log.items,
-                apply: addAction,
-                onCancel: cancelAddAction,
-              ),
-              Styles.emptySpace(),
-            ],
             Expanded(
               child: LogBlock(
                 logItems: log.items,
