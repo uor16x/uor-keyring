@@ -5,7 +5,7 @@ import 'package:uor_keyring/transform/none.dart';
 import 'package:uor_keyring/transform/transform.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/add_action.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/log_block.dart';
-import 'package:uor_keyring/widgets/shared/styles.dart';
+import 'package:uor_keyring/theme.dart';
 import 'package:uor_keyring/widgets/shared/tab_header.dart';
 
 class Keygen extends StatefulWidget {

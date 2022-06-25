@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uor_keyring/widgets/shared/styles.dart';
+import 'package:uor_keyring/theme.dart';
 
 class _ResultText extends StatelessWidget {
   final String label;

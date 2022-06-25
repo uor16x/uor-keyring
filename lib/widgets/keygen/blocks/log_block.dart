@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uor_keyring/shared/action_result.dart';
 import 'package:uor_keyring/transform/transform.dart';
 import 'package:uor_keyring/widgets/keygen/blocks/item_info.dart';
-import 'package:uor_keyring/widgets/shared/styles.dart';
+import 'package:uor_keyring/theme.dart';
 
 class _LogItem extends StatelessWidget {
   final ActionLogItem item;

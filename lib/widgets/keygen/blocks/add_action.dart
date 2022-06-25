@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:uor_keyring/extensions.dart';
 import 'package:uor_keyring/shared/action_result.dart';
+import 'package:uor_keyring/theme.dart';
 import 'package:uor_keyring/transform/transform.dart';
 import 'package:uor_keyring/widgets/keygen/actions/attach.dart';
 import 'package:uor_keyring/widgets/keygen/actions/concat.dart';
 import 'package:uor_keyring/widgets/keygen/actions/substr.dart';
-import 'package:uor_keyring/widgets/shared/styles.dart';
 
 class AddAction extends StatefulWidget {
   final List<ActionLogItem> inputs;

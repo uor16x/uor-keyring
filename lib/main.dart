@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Uor Keyring',
       debugShowCheckedModeBanner: false,
-      theme: getTheme(),
+      theme: Styles.getTheme(),
       home: const Home(),
     );
   }
