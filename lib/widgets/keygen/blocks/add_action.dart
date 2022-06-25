@@ -89,32 +89,11 @@ class _AddActionState extends State<AddAction> {
         if (actionType == TransformActionType.attach.asString())
           Attach(inputs: widget.inputs, onTransform: onTransform),
         // ---
-
-        Styles.emptySpace(10),
-        TextButton(
-          onPressed: widget.onCancel,
-          child: const Text('Cancel'),
-        ),
       ],
     );
-    // if (addMode) {
-
-    // } else {
-    //   addAction = Row(
-    //     mainAxisAlignment: MainAxisAlignment.center,
-    //     children: [
-    //       TextButton(
-    //         onPressed: () => setMode(true),
-    //         child: const Text('Add transformation'),
-    //       ),
-    //       TextButton(
-    //         onPressed: widget.reset,
-    //         child: const Text('Reset'),
-    //       ),
-    //     ],
-    //   );
-    // }
-
-    return Center(child: addAction);
+    return Container(
+      padding: Styles.padding(20),
+      child: addAction,
+    );
   }
 }
